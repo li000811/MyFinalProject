@@ -1,8 +1,8 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
 /**
- * Represents a Flight object containing information about a flight's origin, destination,
- * terminal, gate, and delay (if any).
+ * Represents a Flight object containing information about a departure from the airport that was
+ * searched. A Flight has an origin, a destination, a terminal, a gate, and a delay (if any).
  */
 public class Flight {
 
