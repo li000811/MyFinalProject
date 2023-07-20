@@ -32,9 +32,6 @@ public class CurrencyConverter extends AppCompatActivity {
 
     //   Arraylist<Currency> currencyList = new ArrayList<>();
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
 //        binding.idAviationTracker.setOnClickListener( click ->
 //                startActivity(new Intent(this, AviationTracker.class))
 //        );
+
         binding.idCurrencyConverter.setOnClickListener( click ->
                 startActivity(new Intent(this, CurrencyConverter.class))
         );
+
 //        binding.idTriviaQuestion.setOnClickListener( click ->
 //                startActivity(new Intent(this, TriviaQuestion.class))
 //        );
