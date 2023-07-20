@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+
+import algonquin.cst2335.myfinalproject.currencyConverter.CurrencyConverter;
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,18 +19,18 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.idAviationTracker.setOnClickListener( click ->
-                startActivity(new Intent(this, IdAviation.class))
-        );
+//        binding.idAviationTracker.setOnClickListener( click ->
+//                startActivity(new Intent(this, AviationTracker.class))
+//        );
         binding.idCurrencyConverter.setOnClickListener( click ->
-                startActivity(new Intent(this, IdCurrencyConverter.class))
+                startActivity(new Intent(this, CurrencyConverter.class))
         );
-        binding.idTriviaQuestion.setOnClickListener( click ->
-                startActivity(new Intent(this, IdTriviaQuestion.class))
-        );
-        binding.idBearGenerator.setOnClickListener( click ->
-                startActivity(new Intent(this, IdBearGenerator.class))
-        );
+//        binding.idTriviaQuestion.setOnClickListener( click ->
+//                startActivity(new Intent(this, TriviaQuestion.class))
+//        );
+//        binding.idBearGenerator.setOnClickListener( click ->
+//                startActivity(new Intent(this, BearGenerator.class))
+//        );
 
     }
 }

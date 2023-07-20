@@ -7,19 +7,28 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/id_welcomePage"
+    android:id="@+id/id_welcomePage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="sans-serif-medium"
+    android:text="Welcome to Our Final Project"
+    android:textAlignment="center"
+    android:textColor="#647DC8"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toTopOf="@+id/id_aviationTracker"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="Welcome to Our Final Project"
-        android:textAlignment="center"
-        android:textColor="#647DC8"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/id_aviationTracker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Created on July 16, 2023"
+        app:layout_constraintEnd_toEndOf="@+id/id_welcomePage"
+        app:layout_constraintStart_toStartOf="@+id/id_welcomePage"
+        app:layout_constraintTop_toBottomOf="@+id/id_welcomePage" />
 
     <Button
         android:id="@+id/id_aviationTracker"
@@ -64,20 +73,12 @@
         android:id="@+id/id_bearGenerator"
         android:layout_width="195dp"
         android:layout_height="43dp"
+        android:layout_marginStart="108dp"
         android:layout_marginTop="32dp"
         android:text="Bear Image Generator"
-        app:layout_constraintEnd_toEndOf="@+id/id_triviaQuestion"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toStartOf="@+id/id_triviaQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_triviaQuestion" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Created on July 16, 2023"
-        app:layout_constraintEnd_toEndOf="@+id/id_welcomePage"
-        app:layout_constraintStart_toStartOf="@+id/id_welcomePage"
-        app:layout_constraintTop_toBottomOf="@+id/id_welcomePage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
