@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,8 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/arrow"
-        android:src="@android:drawable/arrow_down_float"
-        app:layout_constraintLeft_toRightOf="@+id/currencyFrom"/>
+        android:src="@drawable/arrow_right"
+        app:layout_constraintLeft_toRightOf="@+id/currencyFrom"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/currencyTo"
@@ -30,7 +32,7 @@
         android:textSize="20sp"
         android:text="CAD"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/arrow"/>
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:id="@+id/amountFrom"
@@ -49,8 +51,8 @@
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
         android:text="333.0"
-        app:layout_constraintTop_toBottomOf="@+id/currencyTo"
-        app:layout_constraintLeft_toRightOf="@+id/arrow"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currencyTo"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

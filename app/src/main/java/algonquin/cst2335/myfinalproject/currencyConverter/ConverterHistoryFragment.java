@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.FragmentConverterHistoryBinding;
 import algonquin.cst2335.myfinalproject.databinding.ItemConverterHistoryBinding;
@@ -21,8 +23,10 @@ public class ConverterHistoryFragment extends Fragment {
 
     private RecyclerView.Adapter myAdapter;
 
-    public ConverterHistoryFragment() {
+    ArrayList<Currency> list = new ArrayList<Currency>();
 
+    public ConverterHistoryFragment(ArrayList<Currency> list) {
+        this.list = list;
     }
 
     @Override
@@ -40,16 +44,16 @@ public class ConverterHistoryFragment extends Fragment {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
 
-                holder.currencyFrom.setText("USD");
-                holder.currencyTo.setText("CAD");
+                holder.currencyFrom.setText(list.get(position).getCurrencyFrom());
+                holder.currencyTo.setText(list.get(position).getCurrencyTo());
 
-                holder.amountFrom.setText("123.00");
-                holder.amountTo.setText("162.36");
+                holder.amountFrom.setText(list.get(position).getAmountFrom()+"");
+                holder.amountTo.setText(list.get(position).getAmountTo()+"");
             }
 
             @Override
             public int getItemCount() {
-                return 10;
+                return list.size();
             }
 
         });
