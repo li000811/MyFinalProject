@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import algonquin.cst2335.myfinalproject.R;
-import algonquin.cst2335.myfinalproject.databinding.FragmentConverterHistoryBinding;
-import algonquin.cst2335.myfinalproject.databinding.ItemConverterHistoryBinding;
+import algonquin.cst2335.myfinalproject.databinding.FragmentCurrencyConverterHistoryBinding;
+import algonquin.cst2335.myfinalproject.databinding.ItemCurrencyConverterHistoryBinding;
 
 public class ConverterHistoryFragment extends Fragment {
-    FragmentConverterHistoryBinding binding;
+    FragmentCurrencyConverterHistoryBinding binding;
+
 
     private RecyclerView.Adapter myAdapter;
 
@@ -32,12 +33,12 @@ public class ConverterHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        binding = FragmentConverterHistoryBinding.inflate(inflater);
+        binding = FragmentCurrencyConverterHistoryBinding.inflate(inflater);
         binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                ItemConverterHistoryBinding sendBinding = ItemConverterHistoryBinding.inflate(getLayoutInflater(), parent, false);
+                ItemCurrencyConverterHistoryBinding sendBinding = ItemCurrencyConverterHistoryBinding.inflate(getLayoutInflater(), parent, false);
                 return new MyRowHolder(sendBinding.getRoot());
             }
 

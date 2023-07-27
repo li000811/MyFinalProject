@@ -1,3 +1,5 @@
 <resources>
+    <!--welcome page-->
     <string name="app_name">MyFinalProject</string>
+    <string name="hello_message">Currency Converter</string>
 </resources>
