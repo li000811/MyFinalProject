@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">安卓终期项目</string>
-    <string name="hello_message">货币转换器</string>
+
+    <!--currency converter-->
+    <string name="app_name">货币转换器</string>
+    <string name="amount">金额</string>
+    <string name="hint">请输入金额</string>
+    <string name="from">初始货币</string>
+    <string name="to">目标货币</string>
+    <string name="button">转换</string>
+    <string name="confirm">你想转换货币么</string>
 </resources>

@@ -1,5 +1,10 @@
 <resources>
     <!--welcome page-->
     <string name="app_name">MyFinalProject</string>
-    <string name="hello_message">Currency Converter</string>
+    <string name="amount">Amount</string>
+    <string name="hint">Please Enter Amount</string>
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
+    <string name="button">Convert</string>
+    <string name="confirm">Do you want to convert?</string>
 </resources>

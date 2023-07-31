@@ -73,7 +73,10 @@ public class CurrencyConverter extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyConverter.this );
-                builder.setMessage("Do you want to convert?").setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
+//                builder.setMessage("Do you want to convert?").setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
+                //add variable "confirm" to prepare for translation
+                builder.setMessage(R.string.confirm).setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
+
                     RequestFromWeb();
 //                    Double tot;
 //                    Double amount = Double.parseDouble(binding.editAmount.getText().toString());
