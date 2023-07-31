@@ -46,6 +46,8 @@
 
 ### Notes
 
+SharedPreferences in week 4
+
 The URL for searching is “http://api.aviationstack.com/v1/flights?access_key=YOUR_ACCESS_KEY?dep_iata=THE_AIRPORT_CODE” where YOUR_ACCESS_KEY is something you must get from this website: https://aviationstack.com/product and THE_AIRPORT_CODE is a 3-letter code representing the airport. For instance, YOW is for Ottawa, YYZ is Toronto, YUL is Montreal. 
 
 Your application must show a list of results in a RecyclerView, with each row representing a flight that is a departure from that airport that was searched.
