@@ -20,6 +20,7 @@ import java.util.Date;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
+import algonquin.cst2335.myfinalproject.databinding.AviationActivityMainBinding;
 
 /**
  *  LANDING PAGE FOR THE AVIATION STACK FLIGHT TRACKER.
@@ -30,24 +31,53 @@ import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
 public class IdAviation extends AppCompatActivity {
 
     // INNER CLASS SECTION
-//        class RowHolder extends RecyclerView.ViewHolder {
-//            TextView message;
-//            TextView time;
-//
-//            public RowHolder(@NonNull View itemView){
-//                super(itemView);
-//                message = itemView.findViewById(R.id.message);
-//                time = itemView.findViewById(R.id.time);
-//            }
-//        }
+        class RowHolder extends RecyclerView.ViewHolder {
+            //TextView message;
+
+            public RowHolder(@NonNull View itemView){
+                super(itemView);
+                //message = itemView.findViewById(R.id.message);
+            }
+        }
+
+    // load variables
+    AviationActivityMainBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aviation_activity_main);
 
+        // Load recycler view
+        binding = AviationActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.recyclerView.setAdapter(
+                new RecyclerView.Adapter<RowHolder>() {// Tells the view how to draw items in the list
+                    /** This function creates a ViewHolder object which we'll learn next.
+                    It represents a single row in the list */
+                    @NonNull
+                    @Override
+                    public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        return null;
+                    }
+
+                    /** This function creates a ViewHolder object which we'll learn next.
+                     * It represents a single row in the list */
+                    @Override
+                    public void onBindViewHolder(@NonNull RowHolder holder, int position) {
+
+                    }
+
+                    /** This function just returns an int specifying how many items to draw. */
+                    @Override
+                    public int getItemCount() {
+                        return 0;
+                    }
+                }
+        );
+
     //  Displaying Toast
-        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"PLACEHOLDER TOAST",Toast.LENGTH_SHORT).show();
         //binding.enterBtn DOES NOT WORK
 
 //  // For rotation survivability
