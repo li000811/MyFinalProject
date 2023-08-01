@@ -17,15 +17,13 @@
    - [ ] +button1: send Flight details to database
    - [ ] +button2: delete  Flight details from databse
    - [ ] +button3: navigation button (back)
-   - [ ] Get code from https://aviationstack.com/product
-   - [ ] Store code here: **code** = 
-   - [ ] Get API key: https://currency.getgeoapi.com/
-   - [ ] Store API key here: **key** = 
+- [x] Get code from https://aviationstack.com/product
+- [x] Store code here: **code** = 8e4f8a6f95d24ccff2a43f8f7a05546c
 
 ## CHECKLIST
 
 - [x] RecyclerView
-- [ ] Toast
+- [x] Toast
 - [ ] SnackBar
 - [ ] AlertDialog
 - [x] EditText

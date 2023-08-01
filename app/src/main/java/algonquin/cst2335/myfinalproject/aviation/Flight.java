@@ -1,16 +1,23 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents a Flight object containing information about a departure from the airport that was
  * searched. A Flight has an origin, a destination, a terminal, a gate, and a delay (if any).
  */
 public class Flight {
 
+    // Cards
+    private LocalDateTime datetime;
     private String origin;
     private String destination;
+    private String airport;
+    // Details
     private String terminal;
     private String gate;
-    private String delay;
+    private int delay;
+    private String flightNo;
 
     /**
      * Default constructor for the Flight class.
@@ -117,9 +124,7 @@ public class Flight {
      *
      * @return The delay status as a String, or null if no delay.
      */
-    public String getDelay() {
-        return delay;
-    }
+    public int getDelay() {return delay;}
 
     /**
      * Set the delay status for the flight.
@@ -127,7 +132,7 @@ public class Flight {
      * @param delay The delay status to be set.
      * @return The Flight object to enable method chaining.
      */
-    public Flight setDelay(String delay) {
+    public Flight setDelay(int delay) {
         this.delay = delay;
         return this;
     }
