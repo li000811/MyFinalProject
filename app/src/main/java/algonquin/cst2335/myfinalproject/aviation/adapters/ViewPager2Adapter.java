@@ -8,6 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import algonquin.cst2335.myfinalproject.aviation.fragments.SaveFragment;
 import algonquin.cst2335.myfinalproject.aviation.fragments.SearchFragment;
 
+/**
+ * Used in IdAviation.initView()
+ */
 public class ViewPager2Adapter extends FragmentStateAdapter {
 
     public ViewPager2Adapter(@NonNull FragmentActivity fragmentActivity) {

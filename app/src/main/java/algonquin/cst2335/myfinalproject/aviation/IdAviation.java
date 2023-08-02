@@ -1,6 +1,7 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -47,6 +48,12 @@ public class IdAviation extends AppCompatActivity {
         );
 
         mediator.attach();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.aviation_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 //

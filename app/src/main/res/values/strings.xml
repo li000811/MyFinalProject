@@ -2,4 +2,6 @@
     <string name="app_name">MyFinalProject</string>
     <string name="search">Search Flight</string>
     <string name="save">Saved Flights</string>
+    <string name="about">About</string>
+    <string name="language">Language</string>
 </resources>
