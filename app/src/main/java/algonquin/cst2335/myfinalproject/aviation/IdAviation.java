@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.adapters.ViewPager2Adapter;
@@ -30,27 +31,21 @@ public class IdAviation extends AppCompatActivity {
     private void initView() {
         // load XML widgets from aviation_activity_main.xml
         MaterialToolbar toolbar = findViewById(R.id.toolbar); //previously tool
-        ViewPager2 viewPager2 = findViewById(R.id.viewPager); //vp
+        ViewPager2 viewPager = findViewById(R.id.viewPager); //vp
         TabLayout tabLayout = findViewById(R.id.tabLayout); //lt
+            // Insert and prepare tabs
+            tabLayout.addTab(tabLayout.newTab()); // add tab for "search"
+            tabLayout.addTab(tabLayout.newTab()); // add tab for "saved flights"
+            String[] toolbarTabs = new String[]{getString(R.string.search), getString(R.string.save)}; // Strings for toolbar tabs
 
+        setSupportActionBar(toolbar); // Set toolbar to act as the ActionBar for this Activity window.
+        viewPager.setAdapter(new ViewPager2Adapter(this));
 
-        ViewPager2Adapter viewPagerAdapter = new ViewPager2Adapter(this);
-        String[] tabs = new String[]{getString(R.string.search), getString(R.string.save)};
+        // A mediator to link Widget:TabLayout with Widget:ViewPager2
+        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager,
+                (tab, position) -> tab.setText(toolbarTabs[position])
+        );
 
-        setSupportActionBar(toolbar);
-
-
-        viewPager2.setAdapter(pager2Adapter);
-        for (int i = 0; i < 2; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-        }
-
-        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(tabs[position]);
-            }
-        });
         mediator.attach();
     }
 
