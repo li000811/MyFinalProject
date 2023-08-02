@@ -1,26 +1,12 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import algonquin.cst2335.myfinalproject.R;
-import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
-import algonquin.cst2335.myfinalproject.databinding.AviationActivityMainBinding;
 
 /**
  *  LANDING PAGE FOR THE AVIATION STACK FLIGHT TRACKER.
@@ -30,54 +16,106 @@ import algonquin.cst2335.myfinalproject.databinding.AviationActivityMainBinding;
  */
 public class IdAviation extends AppCompatActivity {
 
-    // INNER CLASS SECTION
-        class RowHolder extends RecyclerView.ViewHolder {
-            //TextView message;
-
-            public RowHolder(@NonNull View itemView){
-                super(itemView);
-                //message = itemView.findViewById(R.id.message);
-            }
-        }
-
-    // load variables
-    AviationActivityMainBinding binding;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aviation_activity_main);
 
-        // Load recycler view
-        binding = AviationActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        binding.recyclerView.setAdapter(
-                new RecyclerView.Adapter<RowHolder>() {// Tells the view how to draw items in the list
-                    /** This function creates a ViewHolder object which we'll learn next.
-                    It represents a single row in the list */
-                    @NonNull
-                    @Override
-                    public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        return null;
-                    }
+        //initView();
+    }
 
-                    /** This function creates a ViewHolder object which we'll learn next.
-                     * It represents a single row in the list */
-                    @Override
-                    public void onBindViewHolder(@NonNull RowHolder holder, int position) {
+//    private void initView() {
+//        // load XML widgets from aviation_activity_main.xml
+//        MaterialToolbar toolbar = findViewById(R.id.toolbar); //previously tool
+//        ViewPager2 viewPager2 = findViewById(R.id.viewPager); //vp
+//        TabLayout tabLayout = findViewById(R.id.tabLayout); //lt
+//
+//        //String[] tabs = new String[]{getString(R.string.search), getString(R.string.save)};
+//        //ViewPager2Adapter pager2Adapter = new ViewPager2Adapter(this);
+//
+////        setSupportActionBar(toolbar);
+////
+////
+////        viewPager2.setAdapter(pager2Adapter);
+////        for (int i = 0; i < 2; i++) {
+////            tabLayout.addTab(tabLayout.newTab());
+////        }
+////
+////        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+////            @Override
+////            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+////                tab.setText(tabs[position]);
+////            }
+////        });
+////        mediator.attach();
+//    }
 
-                    }
+//    // INNER CLASS SECTION
+//        class RowHolder extends RecyclerView.ViewHolder {
+//            TextView time;
+//            TextView departure;
+//            TextView arrival;
+//            TextView origin;
+//            TextView destination;
+//            TextView airport;
+//
+//            public RowHolder(@NonNull View itemView){
+//                super(itemView);
+//                time = itemView.findViewById(R.id.time);
+//                departure = itemView.findViewById(R.id.departure);
+//                arrival = itemView.findViewById(R.id.arrival);
+//                origin = itemView.findViewById(R.id.origin);
+//                destination = itemView.findViewById(R.id.destination);
+//                airport = itemView.findViewById(R.id.airport);
+//            }
+//        }
+//
+//    // load variables
+//    AviationActivityMainBinding binding;
+//    ArrayList<String> flights = new ArrayList<>();
 
-                    /** This function just returns an int specifying how many items to draw. */
-                    @Override
-                    public int getItemCount() {
-                        return 0;
-                    }
-                }
-        );
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.aviation_activity_main);
+//
+//        // Load recycler view
+//        binding = AviationActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+//        binding.recyclerView.setAdapter(
+//                new RecyclerView.Adapter<RowHolder>() {// Tells the view how to draw items in the list
+//                    /** This function creates a ViewHolder object which we'll learn next.
+//                    It represents a single row in the list */
+//                    @NonNull
+//                    @Override
+//                    public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                        AviationActivityMainBinding binding = AviationActivityMainBinding.inflate(getLayoutInflater());
+//                        return new RowHolder(binding.getRoot());
+//                    }
+//
+//                    /** This function creates a ViewHolder object which we'll learn next.
+//                     * It represents a single row in the list */
+//                    @Override
+//                    public void onBindViewHolder(@NonNull RowHolder holder, int position) {
+//                        String obj = flights.get(position);
+//                        holder.time.setText(obj);
+//                        holder.departure.setText("p2");
+//                        holder.arrival.setText("p3");
+//                        holder.origin.setText("p4");
+//                        holder.destination.setText("p5");
+//                        holder.airport.setText("p6");
+//                    }
+//
+//                    /** This function just returns an int specifying how many items to draw. */
+//                    @Override
+//                    public int getItemCount() {
+//                        return 0;
+//                    }
+//                }
+//        );
 
     //  Displaying Toast
-        Toast.makeText(getApplicationContext(),"PLACEHOLDER TOAST",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"PLACEHOLDER TOAST",Toast.LENGTH_SHORT).show();
         //binding.enterBtn DOES NOT WORK
 
 //  // For rotation survivability
@@ -135,35 +173,3 @@ public class IdAviation extends AppCompatActivity {
 //
 //            });
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
