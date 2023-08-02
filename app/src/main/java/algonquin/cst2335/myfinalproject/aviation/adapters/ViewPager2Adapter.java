@@ -23,7 +23,6 @@ public class ViewPager2Adapter extends FragmentStateAdapter {
             case 1:
                 return new SaveFragment();
         }
-
         return null;
     }
 
