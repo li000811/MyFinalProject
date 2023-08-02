@@ -2,11 +2,14 @@ package algonquin.cst2335.myfinalproject.aviation;
 
 import android.os.Bundle;
 
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.tabs.TabLayout;
 
 import algonquin.cst2335.myfinalproject.R;
+import algonquin.cst2335.myfinalproject.aviation.adapters.ViewPager2Adapter;
 
 /**
  *  LANDING PAGE FOR THE AVIATION STACK FLIGHT TRACKER.
@@ -21,54 +24,36 @@ public class IdAviation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aviation_activity_main);
 
-        //initView();
+        initView();
     }
 
-//    private void initView() {
-//        // load XML widgets from aviation_activity_main.xml
-//        MaterialToolbar toolbar = findViewById(R.id.toolbar); //previously tool
-//        ViewPager2 viewPager2 = findViewById(R.id.viewPager); //vp
-//        TabLayout tabLayout = findViewById(R.id.tabLayout); //lt
-//
-//        //String[] tabs = new String[]{getString(R.string.search), getString(R.string.save)};
-//        //ViewPager2Adapter pager2Adapter = new ViewPager2Adapter(this);
-//
-////        setSupportActionBar(toolbar);
-////
-////
-////        viewPager2.setAdapter(pager2Adapter);
-////        for (int i = 0; i < 2; i++) {
-////            tabLayout.addTab(tabLayout.newTab());
-////        }
-////
-////        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-////            @Override
-////            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-////                tab.setText(tabs[position]);
-////            }
-////        });
-////        mediator.attach();
-//    }
+    private void initView() {
+        // load XML widgets from aviation_activity_main.xml
+        MaterialToolbar toolbar = findViewById(R.id.toolbar); //previously tool
+        ViewPager2 viewPager2 = findViewById(R.id.viewPager); //vp
+        TabLayout tabLayout = findViewById(R.id.tabLayout); //lt
 
-//    // INNER CLASS SECTION
-//        class RowHolder extends RecyclerView.ViewHolder {
-//            TextView time;
-//            TextView departure;
-//            TextView arrival;
-//            TextView origin;
-//            TextView destination;
-//            TextView airport;
-//
-//            public RowHolder(@NonNull View itemView){
-//                super(itemView);
-//                time = itemView.findViewById(R.id.time);
-//                departure = itemView.findViewById(R.id.departure);
-//                arrival = itemView.findViewById(R.id.arrival);
-//                origin = itemView.findViewById(R.id.origin);
-//                destination = itemView.findViewById(R.id.destination);
-//                airport = itemView.findViewById(R.id.airport);
-//            }
-//        }
+
+        ViewPager2Adapter viewPagerAdapter = new ViewPager2Adapter(this);
+        String[] tabs = new String[]{getString(R.string.search), getString(R.string.save)};
+
+        setSupportActionBar(toolbar);
+
+
+        viewPager2.setAdapter(pager2Adapter);
+        for (int i = 0; i < 2; i++) {
+            tabLayout.addTab(tabLayout.newTab());
+        }
+
+        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(tabs[position]);
+            }
+        });
+        mediator.attach();
+    }
+
 //
 //    // load variables
 //    AviationActivityMainBinding binding;
