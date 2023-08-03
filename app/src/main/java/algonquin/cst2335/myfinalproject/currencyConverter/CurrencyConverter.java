@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,6 +35,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.ActivityCurrencyConverterBinding;
@@ -43,6 +46,8 @@ public class CurrencyConverter extends AppCompatActivity {
     ActivityCurrencyConverterBinding binding;
 
     ArrayList<Currency> results = new ArrayList<Currency>();
+
+    CurrencyDAO dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +59,17 @@ public class CurrencyConverter extends AppCompatActivity {
         //this loads the toolbar, in onCreateOptionsMenu()
         setSupportActionBar(binding.converterToolbar); // adds the toolbar, to call onCreateOptionsMenu()
 
+        //database
+        CurrencyDatabase db = Room.databaseBuilder(getApplicationContext(), CurrencyDatabase.class,
+                "database-name").build();
+        dao = db.cDAO();
 
+        //sharePreferences
         SharedPreferences pref = getSharedPreferences("Final", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         binding.editAmount .setText(pref.getString("amount",""));
+
+
         String[] from = {"USD", "CAD", "AUD"};
         ArrayAdapter adapterFrom = new ArrayAdapter<String>(this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, from);
@@ -73,11 +85,13 @@ public class CurrencyConverter extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(CurrencyConverter.this );
-//                builder.setMessage("Do you want to convert?").setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
+                //builder.setMessage("Do you want to convert?").setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
                 //add variable "confirm" to prepare for translation
                 builder.setMessage(R.string.confirm).setTitle("Question: ").setPositiveButton("YES", (dialog, cl) -> {
-
+                    Double amount = Double.parseDouble(binding.editAmount.getText().toString());
+                    editor.apply();
                     RequestFromWeb();
+
 //                    Double tot;
 //                    Double amount = Double.parseDouble(binding.editAmount.getText().toString());
 //                    editor.putString("amount",amount.toString());
@@ -111,12 +125,13 @@ public class CurrencyConverter extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().remove(converterHistoryFragment).addToBackStack("").commit();
                 converterHistoryFragment = null;
             }else{
-                converterHistoryFragment = new ConverterHistoryFragment(results);
+                converterHistoryFragment = new ConverterHistoryFragment(this);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragmentHistory, converterHistoryFragment).addToBackStack("").commit();
             }
-           }
+        }
         return true;
     }
+
     //adds for toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,13 +156,14 @@ public class CurrencyConverter extends AppCompatActivity {
         builder.appendQueryParameter("amount", amountFrom);
 
         //String Request initialized
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, builder.toString(), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, builder.toString(),
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i(TAG,"response :" + response.toString());
-                // display the repsonse to the screen
-                // it is only for example, you should parse the string
-                //  and set the fields in recyclerView
+                // displays response to the screen
+                // it is only for example, should parse the string
+                // and set the fields in recyclerView
                 Currency currency = new Currency();
                 currency.setCurrencyFrom(currencyFrom);
                 currency.setCurrencyTo(currencyTo);
@@ -158,20 +174,27 @@ public class CurrencyConverter extends AppCompatActivity {
                     JSONObject position0 = rates.getJSONObject(currencyTo);
                     String rate_for_amount = position0.getString("rate_for_amount");
                     currency.setAmountTo(Double.parseDouble(rate_for_amount));
-                    Toast.makeText(getApplicationContext(),rate_for_amount, Toast.LENGTH_LONG).show();
-                    Snackbar.make(binding.editAmount, rate_for_amount,Snackbar.LENGTH_LONG).show();
-                    results.add(currency);
+                    Toast.makeText(getApplicationContext(),
+                            "Convert " + currencyFrom + " " + Double.parseDouble(amountFrom)
+                            + " to " + currencyTo + " \n" + "result is "
+                                    + rate_for_amount, Toast.LENGTH_LONG).show();
+                    Executor thread = Executors.newSingleThreadExecutor();
+
+                    thread.execute(()->{
+                        dao.insertCurrency(currency); //insert result into database
+                    });
+
+                    //Snackbar.make(binding.editAmount, rate_for_amount,Snackbar.LENGTH_LONG).show();
+                    //results.add(currency);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
 
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Log.i(TAG,"Error :" + error.toString());
             }
         }){

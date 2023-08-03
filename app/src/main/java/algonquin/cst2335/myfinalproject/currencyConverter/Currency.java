@@ -1,8 +1,27 @@
 package algonquin.cst2335.myfinalproject.currencyConverter;
+
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "currency")
 public class Currency {
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="id")
+    public int id;
+
+    @ColumnInfo(name="CurrencyFrom")
     String CurrencyFrom;
+
+    @ColumnInfo(name="CurrencyTo")
     String CurrencyTo;
+
+    @ColumnInfo(name="AmountFrom")
     double AmountFrom;
+
+    @ColumnInfo(name="AmountTo")
     double AmountTo;
 
     public String getCurrencyFrom() {

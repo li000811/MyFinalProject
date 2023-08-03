@@ -1,5 +1,6 @@
 package algonquin.cst2335.myfinalproject.currencyConverter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.FragmentCurrencyConverterHistoryBinding;
@@ -21,24 +27,35 @@ import algonquin.cst2335.myfinalproject.databinding.ItemCurrencyConverterHistory
 public class ConverterHistoryFragment extends Fragment {
     FragmentCurrencyConverterHistoryBinding binding;
 
-
     private RecyclerView.Adapter myAdapter;
+    //add database milestone3
+    CurrencyDatabase db;
+    CurrencyDAO dao;
 
     ArrayList<Currency> list = new ArrayList<Currency>();
 
-    public ConverterHistoryFragment(ArrayList<Currency> list) {
-        this.list = list;
+    public ConverterHistoryFragment(Context context) {
+        //database
+        db = Room.databaseBuilder(context, CurrencyDatabase.class, "database-name").build();
+        dao = db.cDAO();
+        Executor thread = Executors.newSingleThreadExecutor();
+        thread.execute(()->{
+            list = dao.getAllCurrencys();
+        });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = FragmentCurrencyConverterHistoryBinding.inflate(inflater);
+
         binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                ItemCurrencyConverterHistoryBinding sendBinding = ItemCurrencyConverterHistoryBinding.inflate(getLayoutInflater(), parent, false);
+                ItemCurrencyConverterHistoryBinding sendBinding =
+                        ItemCurrencyConverterHistoryBinding.inflate(getLayoutInflater(),
+                                parent, false);
                 return new MyRowHolder(sendBinding.getRoot());
             }
 
@@ -83,8 +100,20 @@ public class ConverterHistoryFragment extends Fragment {
                 builder.setMessage("Do you want to delete this history?").setTitle("Question: ")
                         .setPositiveButton("YES", (dialog, cl) -> {
 
-                            myAdapter.notifyItemRemoved(position);
-                            myAdapter.notifyItemInserted(position);
+                            //add database
+                            Executor thread = Executors.newSingleThreadExecutor();
+                            thread.execute(() ->
+                            {
+                                dao.deleteCurrency(list.get(position));
+                                Snackbar.make(currencyFrom, "delete success!",
+                                        Snackbar.LENGTH_LONG).show();
+                                list.remove(position);
+                                getActivity().runOnUiThread(()->myAdapter.notifyItemRemoved(position));
+                            });
+
+                            //myAdapter.notifyItemRemoved(position);
+                            //myAdapter.notifyItemInserted(position);
+
                         }).setNegativeButton("NO", (dialog, cl) -> {
 
                         }).create().show();
