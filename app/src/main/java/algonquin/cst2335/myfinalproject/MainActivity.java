@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
-import algonquin.cst2335.myfinalproject.aviation.IdAviation;
-import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
+import algonquin.cst2335.myfinalproject.aviation.MainFlightFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.idAviationTracker.setOnClickListener( click ->
-                startActivity(new Intent(this, IdAviation.class))
+                startActivity(new Intent(this, MainFlightFragment.class))
         );
 //        binding.idCurrencyConverter.setOnClickListener( click ->
 //                startActivity(new Intent(this, IdCurrencyConverter.class))

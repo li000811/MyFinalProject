@@ -1,111 +1,132 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.room.Room;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.Locale;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import algonquin.cst2335.myfinalproject.R;
-import algonquin.cst2335.myfinalproject.aviation.adapters.ViewPager2Adapter;
 
-/**
- *  LANDING PAGE FOR THE AVIATION STACK FLIGHT TRACKER.
- *
- *  This file will handle the main activity of the application, including user
- *  interactions and API requests.
- */
-public class IdAviation extends AppCompatActivity {
+public class FightActivity extends AppCompatActivity {
+
+    private ConstraintLayout mClRoot;
+    private MaterialToolbar mTool;
+    private TextView mTvDetail;
+
+    private Button mBtnSave;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aviation_activity_main);
+        setContentView(R.layout.activity_fight);
 
         initView();
+        init();
     }
 
     private void initView() {
-        // load XML widgets from aviation_activity_main.xml
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        ViewPager2 viewPager = findViewById(R.id.viewPager);
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-            // Insert and prepare tabs
-            tabLayout.addTab(tabLayout.newTab()); // add tab for "search"
-            tabLayout.addTab(tabLayout.newTab()); // add tab for "saved flights"
-            String[] toolbarTabs = new String[]{getString(R.string.search), getString(R.string.save)}; // Strings for toolbar tabs
-
-        setSupportActionBar(toolbar); // Set toolbar to act as the ActionBar for this Activity window.
-        viewPager.setAdapter(new ViewPager2Adapter(this));
-
-        // A mediator to link Widget:TabLayout with Widget:ViewPager2
-        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> tab.setText(toolbarTabs[position])
-        );
-
-        mediator.attach();
+        mClRoot = findViewById(R.id.cl_root);
+        mTool = findViewById(R.id.tool);
+        mTvDetail = findViewById(R.id.tv_detail);
+        mBtnSave = findViewById(R.id.btn_save);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.aviation_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+    private void init() {
+
+        setSupportActionBar(mTool);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        String dataJson = getIntent().getStringExtra("data");
+        if (dataJson != null) {
+            Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
+        } else {
+            return;
+        }
+
+        FightsBean.DataDTO data = new Gson().fromJson(dataJson, FightsBean.DataDTO.class);
+
+        String str = getString(R.string.iata) + ":" + data.getFlight().getIata() +
+                "\n" + getString(R.string.status) + ":" + data.getFlight_status();
+
+        if (data.getArrival() != null) {
+            str = str +
+                    "\n" + getString(R.string.destination) + ":" + data.getArrival().getAirport() +
+                    "\n" + getString(R.string.terminal) + ":" + data.getArrival().getTerminal() +
+                    "\n" + getString(R.string.gate) + ":" + data.getArrival().getGate() +
+                    "\n" + getString(R.string.delay) + ":" + data.getArrival().getDelay();
+        }
+
+        mTvDetail.setText(str);
+
+        mBtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog loadingDialog = new AlertDialog
+                        .Builder(FightActivity.this)
+                        .setTitle(getString(R.string.tips))
+                        .setMessage(getString(R.string.save_data))
+                        .setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        FightDatabase db = Room.databaseBuilder(getApplicationContext(),
+                                                FightDatabase.class, "app.db").build();
+
+                                        FightDao fightDao = db.fightDao();
+                                        SaveFightBean bean = new SaveFightBean();
+                                        bean.Delay = data.getArrival().getDelay();
+                                        bean.Gate = data.getArrival().getGate();
+                                        bean.Terminal = data.getArrival().getTerminal();
+                                        bean.Destination = data.getArrival().getAirport();
+                                        bean.status = data.getFlight_status();
+                                        bean.iata = data.getFlight().getIata();
+                                        fightDao.insert(bean);
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Snackbar.make(mClRoot, getString(R.string.success), Snackbar.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                }).start();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .create();
+
+                loadingDialog.show();
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String[] options = new String[]{getString(R.string.english), getString(R.string.french)};
-
-        if (item.getItemId() == R.id.language) {buildDialogBox(options, 0).create().show();}
-        else                                   {buildDialogBox(          ).create().show();}
-
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * HELPER METHOD SECTION
-     */
-
-    // helper method used in onOptionsItemSelected(*)
-    void changeAppLanguage(Locale locale) {
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        Configuration configuration = getResources().getConfiguration();
-        configuration.setLocale(locale);
-        getResources().updateConfiguration(configuration, metrics);
-        Intent intent = new Intent(this, IdAviation.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    AlertDialog.Builder buildDialogBox(String[] items, int defaultOption){
-        int[] checkedId = {defaultOption};
-        return new AlertDialog.Builder(IdAviation.this)
-            .setTitle(getString(R.string.language))
-            .setSingleChoiceItems(items, checkedId[0], (dialog, which) -> checkedId[0] = which)
-            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
-                if (checkedId[0] == 0) {changeAppLanguage(Locale.ENGLISH);}
-                else                   {changeAppLanguage(Locale.FRENCH);}
-                })
-            .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {});
-    }
-
-    AlertDialog.Builder buildDialogBox(){
-        return new AlertDialog.Builder(IdAviation.this)
-            .setTitle(getString(R.string.about))
-            .setMessage(getString(R.string.subapp_name_aviation) + "\n\n" + getString(R.string.about_details))
-            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {});
-    }
-
 }

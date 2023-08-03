@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".aviation.IdAviation"
+            android:name=".aviation.MainFlightFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -26,7 +26,7 @@ import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
-import algonquin.cst2335.myfinalproject.aviation.IdAviation;
+import algonquin.cst2335.myfinalproject.aviation.MainFlightFragment;
 import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapter;
 import algonquin.cst2335.myfinalproject.aviation.entities.Flight;
 
@@ -73,7 +73,7 @@ public class SearchFlightFragment extends Fragment {
 
         mAdapter.setListener(dataDTO -> {
 
-            Intent intent = new Intent(getContext(), IdAviation.class);
+            Intent intent = new Intent(getContext(), MainFlightFragment.class);
             String data = mGson.toJson(dataDTO);
             intent.putExtra("data", data);
             startActivity(intent);
