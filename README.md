@@ -25,15 +25,15 @@
 - [x] RecyclerView
 - [x] Toast
 - [ ] SnackBar
-- [ ] AlertDialog
+- [x] AlertDialog
 - [x] EditText
 - [x] Button
 - [ ] SharedPreferences
 - [ ] (All) Toolbar 
 - [ ] (All) 4 images on Toolbar
 - [ ] (All) Click events on 4 images on toolbar
-- [ ] Help menu item
-- [ ] AlertDialog on help menu item
+- [x] Help menu item
+- [x] AlertDialog on help menu item
 - [ ] Language support
 - [ ] Volley via Executor or AsyncTask
 - [ ] Fragment (link to Recycler)
