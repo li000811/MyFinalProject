@@ -1,4 +1,4 @@
-package algonquin.cst2335.myfinalproject.aviation.interfaces;
+package algonquin.cst2335.myfinalproject.aviation.abstractflight;
 
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
 

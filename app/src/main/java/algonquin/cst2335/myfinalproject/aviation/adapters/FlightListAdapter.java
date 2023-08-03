@@ -13,7 +13,7 @@ import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
-import algonquin.cst2335.myfinalproject.aviation.interfaces.OnItemClickListener;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.OnItemClickListener;
 
 /**
  * This file will serve as the adapter for

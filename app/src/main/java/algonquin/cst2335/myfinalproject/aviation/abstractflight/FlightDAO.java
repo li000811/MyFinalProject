@@ -1,4 +1,4 @@
-package algonquin.cst2335.myfinalproject.aviation.interfaces;
+package algonquin.cst2335.myfinalproject.aviation.abstractflight;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
