@@ -28,7 +28,7 @@
 - [x] AlertDialog
 - [x] EditText
 - [x] Button
-- [ ] SharedPreferences
+- [x] SharedPreferences
 - [ ] (All) Toolbar 
 - [ ] (All) 4 images on Toolbar
 - [ ] (All) Click events on 4 images on toolbar
