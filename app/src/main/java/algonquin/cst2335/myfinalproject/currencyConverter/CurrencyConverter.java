@@ -119,7 +119,7 @@ public class CurrencyConverter extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.help){
-
+            Toast.makeText(this,"This currency converter uses live change rate",Toast.LENGTH_LONG).show();
         }else if(item.getItemId()==R.id.history){
             if(converterHistoryFragment!=null){
                 getSupportFragmentManager().beginTransaction().remove(converterHistoryFragment).addToBackStack("").commit();

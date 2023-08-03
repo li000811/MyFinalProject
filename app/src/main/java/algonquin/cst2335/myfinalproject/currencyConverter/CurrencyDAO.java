@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Dao
 public interface CurrencyDAO {
@@ -14,7 +15,7 @@ public interface CurrencyDAO {
     void insertCurrency(Currency c);
 
     @Query("Select * from Currency")
-    ArrayList<Currency> getAllCurrencys();
+    List<Currency> getAllCurrencys();
 
     @Delete
     void deleteCurrency(Currency c);

@@ -17,6 +17,7 @@ import androidx.room.Room;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -32,7 +33,7 @@ public class ConverterHistoryFragment extends Fragment {
     CurrencyDatabase db;
     CurrencyDAO dao;
 
-    ArrayList<Currency> list = new ArrayList<Currency>();
+    List<Currency> list = new ArrayList<Currency>();
 
     public ConverterHistoryFragment(Context context) {
         //database
