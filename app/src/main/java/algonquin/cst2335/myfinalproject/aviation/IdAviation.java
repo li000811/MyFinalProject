@@ -1,9 +1,7 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +18,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import algonquin.cst2335.myfinalproject.R;
+import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDAO;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDatabase;
+import algonquin.cst2335.myfinalproject.aviation.entities.FlightEntity;
 
-public class FightActivity extends AppCompatActivity {
+public class IdAviation extends AppCompatActivity {
 
     private ConstraintLayout mClRoot;
     private MaterialToolbar mTool;
@@ -32,7 +34,7 @@ public class FightActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fight);
+        setContentView(R.layout.aviation_activity_detail);
 
         initView();
         init();
@@ -46,7 +48,6 @@ public class FightActivity extends AppCompatActivity {
     }
 
     private void init() {
-
         setSupportActionBar(mTool);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -54,11 +55,9 @@ public class FightActivity extends AppCompatActivity {
         String dataJson = getIntent().getStringExtra("data");
         if (dataJson != null) {
             Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
-        } else {
-            return;
-        }
+        } else {return;}
 
-        FightsBean.DataDTO data = new Gson().fromJson(dataJson, FightsBean.DataDTO.class);
+        DataDTO data = new Gson().fromJson(dataJson, DataDTO.class);
 
         String str = getString(R.string.iata) + ":" + data.getFlight().getIata() +
                 "\n" + getString(R.string.status) + ":" + data.getFlight_status();
@@ -73,51 +72,29 @@ public class FightActivity extends AppCompatActivity {
 
         mTvDetail.setText(str);
 
-        mBtnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog loadingDialog = new AlertDialog
-                        .Builder(FightActivity.this)
-                        .setTitle(getString(R.string.tips))
-                        .setMessage(getString(R.string.save_data))
-                        .setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        FightDatabase db = Room.databaseBuilder(getApplicationContext(),
-                                                FightDatabase.class, "app.db").build();
+        mBtnSave.setOnClickListener(view -> {
+            AlertDialog loadingDialog = new AlertDialog
+                    .Builder(IdAviation.this)
+                    .setTitle(getString(R.string.tips))
+                    .setMessage(getString(R.string.save_data))
+                    .setPositiveButton(getString(R.string.confirm), (dialogInterface, i) -> new Thread(() -> {
+                        FlightDatabase db = Room.databaseBuilder(getApplicationContext(),
+                                FlightDatabase.class, "app.db").build();
 
-                                        FightDao fightDao = db.fightDao();
-                                        SaveFightBean bean = new SaveFightBean();
-                                        bean.Delay = data.getArrival().getDelay();
-                                        bean.Gate = data.getArrival().getGate();
-                                        bean.Terminal = data.getArrival().getTerminal();
-                                        bean.Destination = data.getArrival().getAirport();
-                                        bean.status = data.getFlight_status();
-                                        bean.iata = data.getFlight().getIata();
-                                        fightDao.insert(bean);
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Snackbar.make(mClRoot, getString(R.string.success), Snackbar.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
-                                }).start();
-                            }
-                        })
-                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        })
-                        .create();
-
-                loadingDialog.show();
-            }
+                        FlightDAO fightDao = db.flightDAO();
+                        FlightEntity entity = new FlightEntity();
+                        entity.Delay = data.getArrival().getDelay();
+                        entity.Gate = data.getArrival().getGate();
+                        entity.Terminal = data.getArrival().getTerminal();
+                        entity.Destination = data.getArrival().getAirport();
+                        entity.status = data.getFlight_status();
+                        entity.iata = data.getFlight().getIata();
+                        fightDao.insert(entity);
+                        runOnUiThread(() -> Snackbar.make(mClRoot, getString(R.string.success), Snackbar.LENGTH_SHORT).show());
+                    }).start())
+                    .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {})
+                    .create();
+            loadingDialog.show();
         });
     }
 

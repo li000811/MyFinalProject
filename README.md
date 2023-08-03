@@ -12,7 +12,7 @@
 - [x] Button for saved flight activity
   - [ ] Database operational
   - [ ] Fragment
-- [ ] Implement sharedPreferences to editText in first pages
+- [x] Implement sharedPreferences to editText in first pages
 - [ ] Details page for Flight object
    - [ ] +button1: send Flight details to database
    - [ ] +button2: delete  Flight details from databse
@@ -24,7 +24,7 @@
 
 - [x] RecyclerView
 - [x] Toast
-- [ ] SnackBar
+- [x] SnackBar
 - [x] AlertDialog
 - [x] EditText
 - [x] Button
@@ -35,17 +35,17 @@
 - [x] Help menu item
 - [x] AlertDialog on help menu item
 - [ ] Language support
-- [ ] Volley via Executor or AsyncTask
-- [ ] Fragment (link to Recycler)
-- [ ] Database
-    - [ ] Insert operation (send to Recycler)
-    - [ ] Delete operation
+- [x] Volley via Executor or AsyncTask
+- [x] Fragment (link to Recycler)
+- [x] Database
+    - [x] Insert operation (send to Recycler)
+    - [x] Delete operation
 - [ ] Javadoc folder
 
 ### Notes
 
 SharedPreferences in week 4
 
-The URL for searching is “http://api.aviationstack.com/v1/flights?access_key=YOUR_ACCESS_KEY?dep_iata=THE_AIRPORT_CODE” where YOUR_ACCESS_KEY is something you must get from this website: https://aviationstack.com/product and THE_AIRPORT_CODE is a 3-letter code representing the airport. For instance, YOW is for Ottawa, YYZ is Toronto, YUL is Montreal. 
+The URL for searching is “http://api.aviationstack.com/v1/flights?access_key=YOUR_ACCESS_KEY&dep_iata=THE_AIRPORT_CODE” where YOUR_ACCESS_KEY is something you must get from this website: https://aviationstack.com/product and THE_AIRPORT_CODE is a 3-letter code representing the airport. For instance, YOW is for Ottawa, YYZ is Toronto, YUL is Montreal. 
 
 Your application must show a list of results in a RecyclerView, with each row representing a flight that is a departure from that airport that was searched.

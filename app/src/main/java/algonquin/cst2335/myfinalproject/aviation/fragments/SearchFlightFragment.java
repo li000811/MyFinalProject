@@ -26,7 +26,6 @@ import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
-import algonquin.cst2335.myfinalproject.aviation.MainFlightFragment;
 import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapter;
 import algonquin.cst2335.myfinalproject.aviation.entities.Flight;
 
@@ -35,7 +34,7 @@ import com.google.gson.Gson;
 public class SearchFlightFragment extends Fragment {
 
     private static final String KEY = "8e4f8a6f95d24ccff2a43f8f7a05546c";
-    private View root;
+    private View root = null;
     private EditText mEtSearch;
     private ConstraintLayout mClRoot;
     private Button mBtnSearch;

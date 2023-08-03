@@ -4,7 +4,7 @@
 
     <!-- Aviation Toolbar -->
     <string name="search">Search Flight</string>
-    <string name="save">Saved Flights</string>
+    <string name="saved">Saved Flights</string>
 
     <!-- Aviation Menu -->
     <string name="about">About</string>
@@ -37,5 +37,9 @@
     <string name="gate">Gate</string>
     <string name="delay">Delay</string>
 
+    <!-- Flight Details Activity -->
+    <string name="save">Save this flight</string>
+    <string name="tips">Tips</string>
+    <string name="save_data">Saved in database successfully</string>
 
 </resources>
