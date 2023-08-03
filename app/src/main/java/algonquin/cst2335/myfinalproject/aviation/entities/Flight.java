@@ -1,4 +1,4 @@
-package algonquin.cst2335.myfinalproject.aviation;
+package algonquin.cst2335.myfinalproject.aviation.entities;
 
 import java.time.LocalDateTime;
 
