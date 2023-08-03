@@ -1,5 +1,9 @@
 package algonquin.cst2335.myfinalproject.aviation.entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 @Entity(tableName = "flight_table")
 public class FlightEntity {
     @PrimaryKey(autoGenerate = true)
