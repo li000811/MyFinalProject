@@ -17,7 +17,20 @@ import algonquin.cst2335.myfinalproject.R;
  * This file will serve as the adapter for
  * populating flight data into the RecyclerView.
  */
-public class FlightListAdapter /*extends RecyclerView.Adapter<FlightListAdapter.>*/ {
+
+/*public static class FightsViewHolder extends RecyclerView.ViewHolder {
+    TextView tvDate;
+    TextView tvStatus;
+    TextView tvIata;
+    public FightsViewHolder(@NonNull View itemView) {
+        super(itemView);
+        tvDate = itemView.findViewById(R.id.tv_date);
+        tvStatus = itemView.findViewById(R.id.tv_status);
+        tvIata = itemView.findViewById(R.id.tv_iata);
+    }
+}
+
+public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.> {*/
 
 //    private List<FightsBean.DataDTO> mData = new ArrayList<>();
 //
@@ -81,4 +94,4 @@ public class FlightListAdapter /*extends RecyclerView.Adapter<FlightListAdapter.
 //        void callBack(FightsBean.DataDTO dataDTO);
 //    }
 
-}
+//}
