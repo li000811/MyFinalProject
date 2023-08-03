@@ -1,7 +1,26 @@
 <resources>
     <string name="app_name">MyFinalProject</string>
+    <string name="subapp_name_aviation">Aviation Stack Flight Tracker</string>
+
+    <!-- Toolbar -->
     <string name="search">Search Flight</string>
     <string name="save">Saved Flights</string>
+
+    <!-- Menu -->
     <string name="about">About</string>
     <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="about_details">
+        Search and save flights.\n
+        1) Enter the IATA airport code of the desired flight in the search bar\n
+        2) Press "Save" to save flight\n
+        3) Delete any flights\n
+        4) Show flight / saved flight\n
+        5) Show flights options show details any saved flights
+    </string>
+
+    <!---->
 </resources>

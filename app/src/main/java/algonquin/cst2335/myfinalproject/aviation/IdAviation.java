@@ -1,14 +1,22 @@
 package algonquin.cst2335.myfinalproject.aviation;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.Locale;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.adapters.ViewPager2Adapter;
@@ -31,9 +39,9 @@ public class IdAviation extends AppCompatActivity {
 
     private void initView() {
         // load XML widgets from aviation_activity_main.xml
-        MaterialToolbar toolbar = findViewById(R.id.toolbar); //previously tool
-        ViewPager2 viewPager = findViewById(R.id.viewPager); //vp
-        TabLayout tabLayout = findViewById(R.id.tabLayout); //lt
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
             // Insert and prepare tabs
             tabLayout.addTab(tabLayout.newTab()); // add tab for "search"
             tabLayout.addTab(tabLayout.newTab()); // add tab for "saved flights"
@@ -56,107 +64,48 @@ public class IdAviation extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-//
-//    // load variables
-//    AviationActivityMainBinding binding;
-//    ArrayList<String> flights = new ArrayList<>();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String[] options = new String[]{getString(R.string.english), getString(R.string.french)};
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.aviation_activity_main);
-//
-//        // Load recycler view
-//        binding = AviationActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//        binding.recyclerView.setAdapter(
-//                new RecyclerView.Adapter<RowHolder>() {// Tells the view how to draw items in the list
-//                    /** This function creates a ViewHolder object which we'll learn next.
-//                    It represents a single row in the list */
-//                    @NonNull
-//                    @Override
-//                    public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                        AviationActivityMainBinding binding = AviationActivityMainBinding.inflate(getLayoutInflater());
-//                        return new RowHolder(binding.getRoot());
-//                    }
-//
-//                    /** This function creates a ViewHolder object which we'll learn next.
-//                     * It represents a single row in the list */
-//                    @Override
-//                    public void onBindViewHolder(@NonNull RowHolder holder, int position) {
-//                        String obj = flights.get(position);
-//                        holder.time.setText(obj);
-//                        holder.departure.setText("p2");
-//                        holder.arrival.setText("p3");
-//                        holder.origin.setText("p4");
-//                        holder.destination.setText("p5");
-//                        holder.airport.setText("p6");
-//                    }
-//
-//                    /** This function just returns an int specifying how many items to draw. */
-//                    @Override
-//                    public int getItemCount() {
-//                        return 0;
-//                    }
-//                }
-//        );
+        if (item.getItemId() == R.id.language) {buildDialogBox(options, 0).create().show();}
+        else                                   {buildDialogBox(          ).create().show();}
 
-    //  Displaying Toast
-        //Toast.makeText(getApplicationContext(),"PLACEHOLDER TOAST",Toast.LENGTH_SHORT).show();
-        //binding.enterBtn DOES NOT WORK
-
-//  // For rotation survivability
-//        chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
-//        messages = chatModel.messages.getValue();
-//        if (messages == null){
-//            chatModel.messages.postValue(messages = new ArrayList<ChatMessage>());
-//        }
-
-    // EVENTS SECTION
-            // "Send" button
-//            binding.send.setOnClickListener(click -> {
-//                messages.add(new ChatMessage(
-//                        binding.textField.getText().toString(),
-//                        new SimpleDateFormat("EE, dd-MMM-yyyy hh-mm-ss a").format(new Date()),
-//                        true
-//                ));
-//                adapter.notifyItemInserted(messages.size()-1);
-//                binding.list.setLayoutManager(new LinearLayoutManager(this)); // display messages
-//                binding.textField.setText(""); // clear text
-//            });
-
-    // LIST ADAPTER SECTION
-//            binding.list.setAdapter(adapter = new RecyclerView.Adapter<RowHolder>() {
-//
-//                @NonNull
-//                @Override
-//                public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                    if (viewType == 0){
-//                        SentMessageBinding binding = SentMessageBinding.inflate(getLayoutInflater());
-//                        return new RowHolder(binding.getRoot());
-//                    } else {
-//                        ReceiveMessageBinding binding = ReceiveMessageBinding.inflate(getLayoutInflater());
-//                        return new RowHolder(binding.getRoot());
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onBindViewHolder(@NonNull RowHolder holder, int position) {
-//                    ChatMessage obj = messages.get(position);
-//                    holder.message.setText(obj.getMessage());
-//                    holder.time.setText(obj.getTime());
-//                }
-//
-//                @Override
-//                public int getItemCount() {
-//                    return messages.size();
-//                }
-//
-//                @Override
-//                public int getItemViewType(int position) {
-//                    return messages.get(position).isSent() ? 0 : 1;
-//                }
-//
-//            });
+        return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * HELPER METHOD SECTION
+     */
+
+    // helper method used in onOptionsItemSelected(*)
+    void changeAppLanguage(Locale locale) {
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        Configuration configuration = getResources().getConfiguration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration, metrics);
+        Intent intent = new Intent(this, IdAviation.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    AlertDialog.Builder buildDialogBox(String[] items, int defaultOption){
+        int[] checkedId = {defaultOption};
+        return new AlertDialog.Builder(IdAviation.this)
+            .setTitle(getString(R.string.language))
+            .setSingleChoiceItems(items, checkedId[0], (dialog, which) -> checkedId[0] = which)
+            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+                if (checkedId[0] == 0) {changeAppLanguage(Locale.ENGLISH);}
+                else                   {changeAppLanguage(Locale.FRENCH);}
+                })
+            .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {});
+    }
+
+    AlertDialog.Builder buildDialogBox(){
+        return new AlertDialog.Builder(IdAviation.this)
+            .setTitle(getString(R.string.about))
+            .setMessage(getString(R.string.subapp_name_aviation) + "\n\n" + getString(R.string.about_details))
+            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {});
+    }
+
+}
