@@ -24,6 +24,9 @@
 
     <!--Search Fragment-->
     <string name="search_error_msg">Must enter valid IATA airport code</string>
+    <string name="loading">Loading</string>
+    <string name="success">Success!</string>
+    <string name="failed">Failed</string>
 
     <!--Saved Fragment-->
 
