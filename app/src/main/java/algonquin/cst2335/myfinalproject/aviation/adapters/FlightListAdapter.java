@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
-import algonquin.cst2335.myfinalproject.aviation.entities.Flight;
+import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
+import algonquin.cst2335.myfinalproject.aviation.interfaces.OnItemClickListener;
 
 /**
  * This file will serve as the adapter for
@@ -33,9 +34,10 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
         }
     }
 
-    private List<Flight.DataDTO> mData = new ArrayList<>();
+    private List<DataDTO> mData = new ArrayList<>();
+    public OnItemClickListener mListener;
 
-    public void setNewData(List<FightsBean.DataDTO> data) {
+    public void setNewData(List<DataDTO> data) {
         mData.clear();
         if (data != null) {
             mData.addAll(data);
@@ -46,24 +48,21 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
 
     @NonNull
     @Override
-    public FightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_fight, parent, false);
-        return new FightsViewHolder(view);
+    public FlightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.aviation_item_flight, parent, false);
+        return new FlightsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FightsViewHolder holder, int position) {
-        FightsBean.DataDTO data = mData.get(position);
-        holder.tvStatus.setText(data.getFlight_status());
-        holder.tvDate.setText(data.getFlight_date());
-        holder.tvIata.setText(data.getFlight().getIata());
+    public void onBindViewHolder(@NonNull FlightsViewHolder holder, int position) {
+        DataDTO data = mData.get(position);
+        holder.textViewStatus.setText(data.getFlight_status());
+        holder.textViewDate.setText(data.getFlight_date());
+        holder.textViewIATACode.setText(data.getFlight().getIata());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mListener != null) {
-                    mListener.callBack(data);
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if (mListener != null) {
+                mListener.callBack(data);
             }
         });
     }
@@ -73,14 +72,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
         return mData.size();
     }
 
-    public onItemClickListener mListener;
-
-    public void setListener(onItemClickListener mListener) {
+    public void setListener(OnItemClickListener mListener) {
         this.mListener = mListener;
     }
-
-    public interface onItemClickListener{
-        void callBack(FightsBean.DataDTO dataDTO);
-    }
-
 }
