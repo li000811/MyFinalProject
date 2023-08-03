@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import algonquin.cst2335.myfinalproject.BearGenerator.IdBearGenerator;
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
