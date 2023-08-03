@@ -22,5 +22,9 @@
         5) Show flights options show details any saved flights
     </string>
 
-    <!---->
+    <!--Search Fragment-->
+    <string name="input_message">Enter IATA airport code</string>
+
+    <!--Saved Fragment-->
+
 </resources>

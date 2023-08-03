@@ -27,107 +27,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
+import algonquin.cst2335.myfinalproject.aviation.adapters.FlightListAdapter;
 
 public class SearchFragment extends Fragment {
-//    private EditText mEtSearch;
-//    private ConstraintLayout mClRoot;
-//    private Button mBtnSearch;
-//    private RecyclerView mRvFlights;
-//    private FightsAdapter mAdapter;
-//
-//    private static final String access_key = "8e4f8a6f95d24ccff2a43f8f7a05546c";
-//
-//    private SharedPreferences sharedPreferences;
-//
-//    private Gson mGson = new Gson();
-//
-//
-//    private void initView() {
-//        mEtSearch = root.findViewById(R.id.et_search);
-//        mClRoot = root.findViewById(R.id.cl_root);
-//        mBtnSearch = root.findViewById(R.id.btn_search);
-//        mRvFlights = root.findViewById(R.id.rv_flights);
-//
-//        mAdapter = new FightsAdapter();
-//        mRvFlights.setLayoutManager(new LinearLayoutManager(getContext()));
-//        mRvFlights.setAdapter(mAdapter);
-//    }
-//
-//    private void init() {
-//        sharedPreferences = getContext().getSharedPreferences("FIGHTS", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        mBtnSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String key = mEtSearch.getText().toString();
-//                if (TextUtils.isEmpty(key)) {
-//                    Toast.makeText(getContext(), getContext().getString(R.string.entering_airport_code), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                editor.putString("KEY", key);
-//                editor.apply();
-//
-//                requestData(key);
-//            }
-//        });
-//
-//        mAdapter.setListener(new FightsAdapter.onItemClickListener() {
-//            @Override
-//            public void callBack(FightsBean.DataDTO dataDTO) {
-//
-//                Intent intent = new Intent(getContext(), FightActivity.class);
-//                String data = mGson.toJson(dataDTO);
-//                intent.putExtra("data", data);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        String key = sharedPreferences.getString("KEY", "");
-//        mEtSearch.setText(key);
-//    }
-//
-//    private void requestData(String key) {
-//        AlertDialog loadingDialog = new AlertDialog.Builder(getContext()).setMessage(getContext().getString(R.string.loading)).create();
-//        loadingDialog.show();
-//        RequestQueue mQueue = Volley.newRequestQueue(getContext());
-//        StringRequest stringRequest = new StringRequest("http://api.aviationstack.com/v1/flights?access_key=" + access_key + "&dep_iata=" + key, response -> {
-//            loadingDialog.dismiss();
-//            Snackbar.make(mClRoot, getContext().getString(R.string.success), Snackbar.LENGTH_SHORT).show();
-//            Gson gson = new Gson();
-//            try {
-//                FightsBean data = gson.fromJson(response, FightsBean.class);
-//                List<FightsBean.DataDTO> d = data.getData();
-//                List<FightsBean.DataDTO> reallyData = new ArrayList<>();
-//                for (int i = 0; i < d.size(); i++) {
-//                    if (d.get(i).getFlight() != null) {
-//                        reallyData.add(d.get(i));
-//                    }
-//                }
-//                mAdapter.setNewData(reallyData);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }, error -> {
-//            loadingDialog.dismiss();
-//            Snackbar.make(mClRoot, getContext().getString(R.string.failed) + error.toString(), Snackbar.LENGTH_SHORT).show();
-//        }
-//
-//        );
-//        mQueue.add(stringRequest);
-//
-//    }
-//
-//    private View root;
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        if (root == null) {
-//            root = inflater.inflate(R.layout.fragment_search, container, false);
-//        }
-//        initView();
-//        init();
-//        return root;
-//    }
+
+    private static final String KEY = "8e4f8a6f95d24ccff2a43f8f7a05546c";
+    private View root;
+    private EditText mEtSearch;
+    private ConstraintLayout mClRoot;
+    private Button mBtnSearch;
+    private RecyclerView mRvFlights;
+    private FlightListAdapter mAdapter;
+    private SharedPreferences sharedPreferences;
+    private Gson mGson = new Gson();
+
+    private void initView() {
+        mEtSearch = root.findViewById(R.id.et_search);
+        mClRoot = root.findViewById(R.id.cl_root);
+        mBtnSearch = root.findViewById(R.id.btn_search);
+        mRvFlights = root.findViewById(R.id.rv_flights);
+
+        mAdapter = new FightsAdapter();
+        mRvFlights.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvFlights.setAdapter(mAdapter);
+    }
 }
