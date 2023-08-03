@@ -23,7 +23,7 @@
     </string>
 
     <!--Search Fragment-->
-    <string name="input_message">Enter IATA airport code</string>
+    <string name="search_error_msg">Must enter valid IATA airport code</string>
 
     <!--Saved Fragment-->
 
