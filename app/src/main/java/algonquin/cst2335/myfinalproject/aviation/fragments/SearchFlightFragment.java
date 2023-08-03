@@ -27,12 +27,12 @@ import java.util.List;
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
 import algonquin.cst2335.myfinalproject.aviation.IdAviation;
-import algonquin.cst2335.myfinalproject.aviation.adapters.FlightListAdapter;
+import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapter;
 import algonquin.cst2335.myfinalproject.aviation.entities.Flight;
 
 import com.google.gson.Gson;
 
-public class SearchFragment extends Fragment {
+public class SearchFlightFragment extends Fragment {
 
     private static final String KEY = "8e4f8a6f95d24ccff2a43f8f7a05546c";
     private View root;
@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment {
     private ConstraintLayout mClRoot;
     private Button mBtnSearch;
     private RecyclerView mRvFlights;
-    private FlightListAdapter mAdapter;
+    private SearchFlightListAdapter mAdapter;
     private SharedPreferences sharedPreferences;
     private Gson mGson = new Gson();
 
@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment {
         mBtnSearch = root.findViewById(R.id.btn_search);
         mRvFlights = root.findViewById(R.id.rv_flights);
 
-        mAdapter = new FlightListAdapter();
+        mAdapter = new SearchFlightListAdapter();
         mRvFlights.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvFlights.setAdapter(mAdapter);
     }

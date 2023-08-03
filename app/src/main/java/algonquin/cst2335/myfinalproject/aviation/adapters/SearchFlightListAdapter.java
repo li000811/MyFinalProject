@@ -8,31 +8,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
-import algonquin.cst2335.myfinalproject.aviation.abstractflight.OnItemClickListener;
 
-/**
- * This file will serve as the adapter for
- * populating flight data into the RecyclerView.
- */
+public class SearchFlightListAdapter extends RecyclerView.Adapter<SearchFlightListAdapter.FightsViewHolder> {
 
-public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.FlightsViewHolder> {
-
-    static class FlightsViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewDate;
-        TextView textViewStatus;
-        TextView textViewIATACode;
-        public FlightsViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewDate = itemView.findViewById(R.id.date);
-            textViewStatus = itemView.findViewById(R.id.status);
-            textViewIATACode = itemView.findViewById(R.id.iata);
+    // FLIGHTLISTADAPTER-SPECIFIC CLASSES (shared names)
+        public interface OnItemClickListener {
+            void callBack(DataDTO dataDTO);
         }
-    }
+
+        static class FightsViewHolder extends RecyclerView.ViewHolder {
+            TextView tvDate;
+            TextView tvStatus;
+            TextView tvIata;
+            public FightsViewHolder(@NonNull View itemView) {
+                super(itemView);
+                tvDate = itemView.findViewById(R.id.date);
+                tvStatus = itemView.findViewById(R.id.status);
+                tvIata = itemView.findViewById(R.id.iata);
+            }
+        }
 
     private List<DataDTO> mData = new ArrayList<>();
     public OnItemClickListener mListener;
@@ -48,17 +49,17 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
 
     @NonNull
     @Override
-    public FlightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.aviation_item_flight, parent, false);
-        return new FlightsViewHolder(view);
+        return new FightsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FlightsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FightsViewHolder holder, int position) {
         DataDTO data = mData.get(position);
-        holder.textViewStatus.setText(data.getFlight_status());
-        holder.textViewDate.setText(data.getFlight_date());
-        holder.textViewIATACode.setText(data.getFlight().getIata());
+        holder.tvStatus.setText(data.getFlight_status());
+        holder.tvDate.setText(data.getFlight_date());
+        holder.tvIata.setText(data.getFlight().getIata());
 
         holder.itemView.setOnClickListener(view -> {
             if (mListener != null) {
@@ -75,4 +76,5 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     public void setListener(OnItemClickListener mListener) {
         this.mListener = mListener;
     }
+
 }

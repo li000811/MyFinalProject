@@ -12,14 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import algonquin.cst2335.myfinalproject.R;
-import algonquin.cst2335.myfinalproject.aviation.adapters.FlightListAdapter;
-import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDAO;
+import java.util.List;
 
-public class SaveFragment extends Fragment {
+import algonquin.cst2335.myfinalproject.R;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDatabase;
+import algonquin.cst2335.myfinalproject.aviation.adapters.SavedFlightListAdapter;
+import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapter;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDAO;
+import algonquin.cst2335.myfinalproject.aviation.entities.FlightEntity;
+
+public class SavedFlightFragment extends Fragment {
 
     private View root;
-    private FlightListAdapter mAdapter;
+    private SavedFlightListAdapter mAdapter;
     private FlightDatabase mDb;
 
     @Nullable
@@ -30,21 +35,28 @@ public class SaveFragment extends Fragment {
         }
         initView();
         mDb = Room.databaseBuilder(getContext().getApplicationContext(),
-                FightDatabase.class, "app.db").build();
+                FlightDatabase.class, "app.db").build();
         return root;
     }
 
     private void initView() {
         RecyclerView rv = root.findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new FlightListAdapter();
+        mAdapter = new SavedFlightListAdapter();
         rv.setAdapter(mAdapter);
 
-        mAdapter.setListener(dataDTO -> new Thread(() -> {
-            FlightDAO flightDAO = mDb.fightDao();
-            fightDao.delete(dataDTO);
+        mAdapter.setListener(flightEntity -> new Thread(() -> {
+            FlightDAO flightDAO = mDb.flightDAO();
+            flightDAO.delete(flightEntity);
             setData();
         }).start());
     }
 
+    private void setData() {
+        new Thread(() -> {
+            FlightDAO flightDAO = mDb.flightDAO();
+            List<FlightEntity> data = flightDAO.getAll();
+            getActivity().runOnUiThread(() -> mAdapter.setNewData(data));
+        }).start();
+    }
 }

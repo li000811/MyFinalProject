@@ -19,5 +19,5 @@ public interface FlightDAO {
     void insert(FlightEntity... flightEntities);
 
     @Delete
-    void delete(FlightEntity flightEntities);
+    void delete(FlightEntity flightEntity);
 }
