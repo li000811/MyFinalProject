@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">MyFinalProject</string>
+    <string name="subapp_name_aviation">Aviation Stack Flight Tracker</string>
+
+    <!-- Aviation Toolbar -->
+    <string name="search">Search Flight</string>
+    <string name="saved">Saved Flights</string>
+
+    <!-- Aviation Menu -->
+    <string name="about">About</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="about_details">
+        Search and save flights.\n
+        1) Enter the IATA airport code of the desired flight in the search bar\n
+        2) Press "Save" to save flight\n
+        3) Delete any flights\n
+        4) Show flight / saved flight\n
+        5) Show flights options show details any saved flights
+    </string>
+
+    <!-- Flights Search Fragment-->
+    <string name="input_message">Enter IATA airport code (3 letters)</string>
+    <string name="search_error_msg">Must enter valid IATA airport code (3 letters)</string>
+    <string name="loading">Loading</string>
+    <string name="success">Success!</string>
+    <string name="failed">Failed</string>
+
+    <!-- Saved Flight Fragment -->
+    <string name="iata">IATA Code</string>
+    <string name="status">Status</string>
+    <string name="destination">Destination</string>
+    <string name="terminal">Terminal</string>
+    <string name="gate">Gate</string>
+    <string name="delay">Delay</string>
+
+    <!-- Flight Details Activity -->
+    <string name="save">Save this flight</string>
+    <string name="tips">Tips</string>
+    <string name="save_data">Saved in database successfully</string>
+    <string name="delete">Delete</string>
+
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import algonquin.cst2335.myfinalproject.aviation.fragments.MainFlightFragment;
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,17 +18,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.idAviationTracker.setOnClickListener( click ->
-                startActivity(new Intent(this, IdAviation.class))
+                startActivity(new Intent(this, MainFlightFragment.class))
         );
-        binding.idCurrencyConverter.setOnClickListener( click ->
-                startActivity(new Intent(this, IdCurrencyConverter.class))
-        );
-        binding.idTriviaQuestion.setOnClickListener( click ->
-                startActivity(new Intent(this, IdTriviaQuestion.class))
-        );
-        binding.idBearGenerator.setOnClickListener( click ->
-                startActivity(new Intent(this, IdBearGenerator.class))
-        );
+//        binding.idCurrencyConverter.setOnClickListener( click ->
+//                startActivity(new Intent(this, IdCurrencyConverter.class))
+//        );
+//        binding.idTriviaQuestion.setOnClickListener( click ->
+//                startActivity(new Intent(this, IdTriviaQuestion.class))
+//        );
+//        binding.idBearGenerator.setOnClickListener( click ->
+//                startActivity(new Intent(this, IdBearGenerator.class))
+//        );
 
     }
 }
