@@ -41,5 +41,6 @@
     <string name="save">Save this flight</string>
     <string name="tips">Tips</string>
     <string name="save_data">Saved in database successfully</string>
+    <string name="delete">Delete</string>
 
 </resources>
