@@ -4,6 +4,7 @@ Get code from https://aviationstack.com/product
 
 ## CHECKLIST
 
+- [ ] Javadoc folder
 - [x] RecyclerView
 - [x] Toast
 - [x] SnackBar
@@ -11,15 +12,9 @@ Get code from https://aviationstack.com/product
 - [x] EditText
 - [x] Button
 - [x] SharedPreferences
-- [ ] (All) Toolbar 
-- [ ] (All) 4 images on Toolbar
-- [ ] (All) Click events on 4 images on toolbar
 - [x] Help menu item
 - [x] AlertDialog on help menu item
 - [ ] Language support
 - [x] Volley via Executor or AsyncTask
 - [x] Fragment (link to Recycler)
 - [x] Database
-    - [x] Insert operation (send to Recycler)
-    - [x] Delete operation
-- [ ] Javadoc folder
