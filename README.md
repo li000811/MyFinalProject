@@ -1,22 +1,6 @@
 
-# PLAN OF ACTION
-
-## TODO
-
-- [x] RecyclerView on main activity
-  - [x] Each row of list represents a flight that is a departure from that airport that was searched.
-  - [x] Each row has a button which will send to details page
-- [x] EditText for entering airport 
-- [x] Button for saved flight activity
-  - [ ] Database operational (need further testing)
-  - [x] Fragment
-- [x] Implement sharedPreferences to editText in first pages
-- [ ] Details page for Flight object
-   - [x] +button1: send Flight details to database
-   - [ ] +button2: delete  Flight details from databse
-   - [ ] +button3: navigation button (back)
-- [x] Get code from https://aviationstack.com/product
-- [x] Store code here: **code** = 8e4f8a6f95d24ccff2a43f8f7a05546c
+Get code from https://aviationstack.com/product
+**AVIATION STACK ACCESS CODE** = 8e4f8a6f95d24ccff2a43f8f7a05546c
 
 ## CHECKLIST
 
