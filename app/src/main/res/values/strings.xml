@@ -1,5 +1,21 @@
 <resources>
-    <string name="app_name">Our Final Project</string>
+  <string name="app_name">Our Final Project</string>
+  
+    <!--CURRENCY CONVERTER STRINGS-->
+    <string name="amount">Amount</string>
+    <string name="hint">Please Enter Amount</string>
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
+    <string name="button">Convert</string>
+    <string name="confirm2">Do you want to convert?</string>
+    <string name="message"><b>How to Use This Currency Converter?</b>\n
+            Note: this currency converter is designed to use live exchange rate:\n
+            Step 1. Select the currencies you wish to convert from and convert to.\n
+            Step 2. Enter the amount you want to convert in the provided input field.\n
+            Step 3. Click the Convert button, the converted amount will display based on real time.\n
+    </string>
+  
+    <!-- FLIGHT TRACKER STRINGS -->
     <string name="subapp_name_aviation">Aviation Stack Flight Tracker</string>
 
     <!-- Aviation Toolbar -->
@@ -42,5 +58,4 @@
     <string name="tips">Tips</string>
     <string name="save_data">Saved in database successfully</string>
     <string name="delete">Delete</string>
-
 </resources>
