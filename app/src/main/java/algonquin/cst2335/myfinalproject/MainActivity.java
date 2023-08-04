@@ -41,6 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up click listener for the CurrencyConverter button
         binding.idCurrencyConverter.setOnClickListener(
-          click -> startActivity(new Intent(this, CurrencyConverter.class))
+          click -> startActivity(new Intent(this, CurrencyConverter.class)));
     }
 }
