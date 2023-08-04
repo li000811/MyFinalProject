@@ -2,11 +2,19 @@
 <resources>
 
     <!--currency converter-->
-    <string name="app_name">货币转换器</string>
+    <string name="app_name">安卓终期项目</string>
     <string name="amount">金额</string>
     <string name="hint">请输入金额</string>
     <string name="from">初始货币</string>
     <string name="to">目标货币</string>
     <string name="button">转换</string>
     <string name="confirm">你想转换货币么</string>
+
+    <string name="message"><b>如何使用货币转换器?</b>\n
+            <br>提示: 该货币转换器使用实时汇率:</br>\n
+            <br>步骤 1. 选择你想转化的和目标的货币.</br>\n
+            <br>步骤 2. 输入货币总金额.</br>\n
+            <br>步骤 3. 点击转换按钮，得到转换后的金额.</br>
+    </string>
+
 </resources>
