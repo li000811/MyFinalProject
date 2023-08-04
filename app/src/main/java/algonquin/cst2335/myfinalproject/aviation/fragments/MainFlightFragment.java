@@ -38,7 +38,7 @@ public class MainFlightFragment extends AppCompatActivity {
         // Insert and prepare tabs
         tabLayout.addTab(tabLayout.newTab()); // add tab for "search"
         tabLayout.addTab(tabLayout.newTab()); // add tab for "saved flights"
-        String[] toolbarTabs = new String[]{getString(R.string.search), getString(R.string.save)}; // Strings for toolbar tabs
+        String[] toolbarTabs = new String[]{getString(R.string.search), getString(R.string.saved)}; // Strings for toolbar tabs
 
         setSupportActionBar(toolbar); // Set toolbar to act as the ActionBar for this Activity window.
         viewPager.setAdapter(new ViewPager2Adapter(this));

@@ -15,17 +15,15 @@ import androidx.room.Room;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.R;
+import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDAO;
 import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDatabase;
 import algonquin.cst2335.myfinalproject.aviation.adapters.SavedFlightListAdapter;
-import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapter;
-import algonquin.cst2335.myfinalproject.aviation.abstractflight.FlightDAO;
 import algonquin.cst2335.myfinalproject.aviation.entities.FlightEntity;
 
 public class SavedFlightFragment extends Fragment {
 
     private View root;
     private SavedFlightListAdapter mAdapter;
-    private FlightDatabase mDb;
 
     @Nullable
     @Override
@@ -45,17 +43,25 @@ public class SavedFlightFragment extends Fragment {
         mAdapter = new SavedFlightListAdapter();
         rv.setAdapter(mAdapter);
 
-        mAdapter.setListener(flightEntity -> new Thread(() -> {
-            FlightDAO flightDAO = mDb.flightDAO();
-            flightDAO.delete(flightEntity);
+        mAdapter.setListener(dataDTO -> new Thread(() -> {
+            FlightDAO fightDao = mDb.flightDAO();
+            fightDao.delete(dataDTO);
             setData();
         }).start());
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setData();
+    }
+
+    private FlightDatabase mDb;
+
     private void setData() {
         new Thread(() -> {
-            FlightDAO flightDAO = mDb.flightDAO();
-            List<FlightEntity> data = flightDAO.getAll();
+            FlightDAO fightDao = mDb.flightDAO();
+            List<FlightEntity> data = fightDao.getAll();
             getActivity().runOnUiThread(() -> mAdapter.setNewData(data));
         }).start();
     }
