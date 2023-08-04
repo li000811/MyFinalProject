@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-
 import algonquin.cst2335.myfinalproject.currencyConverter.CurrencyConverter;
+import algonquin.cst2335.myfinalproject.aviation.fragments.MainFlightFragment;
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
 
 /**
@@ -34,22 +34,13 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the layout and bind UI elements
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-//        binding.idAviationTracker.setOnClickListener( click ->
-//                startActivity(new Intent(this, AviationTracker.class))
-//        );
+      
+      // Set up click listener for the Flight Tracker button
+        binding.idAviationTracker.setOnClickListener( 
+          click -> startActivity(new Intent(this, MainFlightFragment.class)));
 
         // Set up click listener for the CurrencyConverter button
-        binding.idCurrencyConverter.setOnClickListener( click ->
-                startActivity(new Intent(this, CurrencyConverter.class))
-        );
-
-//        binding.idTriviaQuestion.setOnClickListener( click ->
-//                startActivity(new Intent(this, TriviaQuestion.class))
-//        );
-//        binding.idBearGenerator.setOnClickListener( click ->
-//                startActivity(new Intent(this, BearGenerator.class))
-//        );
-
+        binding.idCurrencyConverter.setOnClickListener(
+          click -> startActivity(new Intent(this, CurrencyConverter.class))
     }
 }

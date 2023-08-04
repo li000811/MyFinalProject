@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Notre projet final</string>
+    <string name="subapp_name_aviation">Suivi des vols Aviation Stack</string>
+
+    <!-- Aviation Toolbar -->
+    <string name="search">Enregistrer</string>
+    <string name="saved">Vols sauvegardés</string>
+
+    <!-- Aviation Menu -->
+    <string name="about">À propos</string>
+    <string name="language">Langage</string>
+    <string name="english">English (Anglais)</string>
+    <string name="french">Français</string>
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
+    <string name="about_details">
+        Rechercher et enregistrer des vols.\n
+        1) Saisissez le code IATA de l\'aéroport du vol souhaité dans la barre de recherche.\n
+        2) Appuyez sur "Enregistrer" pour sauvegarder le vol\n
+        3) Supprimer des vols\n
+        4) Afficher les vols ou les vols sauvegardés\n
+        5) Afficher les options des vols : afficher les détails des vols sauvegardés\n
+    </string>
+
+    <!-- Flights Search Fragment-->
+    <string name="input_message">Enregistrer le code d\'aéroport IATA (3 lettres)</string>
+    <string name="search_error_msg">Vous devez enter un code d\'aéroport IATA valide (3 lettres)</string>
+    <string name="loading">Attendez</string>
+    <string name="success">Succès!</string>
+    <string name="failed">Échoué</string>
+
+    <!-- Saved Flight Fragment -->
+    <string name="iata">Code IATA</string>
+    <string name="status">État</string>
+    <string name="destination">Destination</string>
+    <string name="terminal">Terminal</string>
+    <string name="gate">Port</string>
+    <string name="delay">Délai</string>
+    <string name="delete">Supprimer</string>
+
+    <!-- Flight Details Activity -->
+    <string name="save">Sauvegarder ce vol</string>
+    <string name="tips">Indice</string>
+    <string name="save_data">Enregistré dans la base de données avec succès.</string>
+
+</resources>
