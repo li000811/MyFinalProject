@@ -14,7 +14,7 @@ Get code from https://aviationstack.com/product
 - [x] SharedPreferences
 - [x] Help menu item
 - [x] AlertDialog on help menu item
-- [ ] Language support
+- [x] Language support
 - [x] Volley via Executor or AsyncTask
 - [x] Fragment (link to Recycler)
 - [x] Database
