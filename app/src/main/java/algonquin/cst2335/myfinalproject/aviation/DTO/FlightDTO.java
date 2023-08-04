@@ -4,7 +4,6 @@ public class FlightDTO {
     private String number;
     private String iata;
     private String icao;
-    private CodesharedDTO codeshared;
 
     public String getNumber() {
         return number;
@@ -28,11 +27,5 @@ public class FlightDTO {
     }
     public void setIcao(String icao) {
         this.icao = icao;
-    }
-    public CodesharedDTO getCodeshared() {
-        return codeshared;
-    }
-    public void setCodeshared(CodesharedDTO codeshared) {
-        this.codeshared = codeshared;
     }
 }

@@ -54,7 +54,9 @@ public class SavedFlightListAdapter extends RecyclerView.Adapter<SavedFlightList
     @Override
     public FightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.aviation_item_saved);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.aviation_item_saved, parent, false);
+
         return new FightsViewHolder(view);
     }
 

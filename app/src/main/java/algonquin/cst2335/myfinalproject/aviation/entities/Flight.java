@@ -1,6 +1,5 @@
 package algonquin.cst2335.myfinalproject.aviation.entities;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
