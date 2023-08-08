@@ -1,24 +1,41 @@
 package algonquin.cst2335.myfinalproject.BearGenerator.data;
 
+import android.graphics.Bitmap;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Image {
-    protected String url;
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
+    @ColumnInfo(name = "image")
+    protected String image;
+    @ColumnInfo(name = "width")
     protected String width;
+    @ColumnInfo(name = "height")
     protected String height;
+    @ColumnInfo(name = "InsertedOrNot")
     protected boolean insertedImg;
 
-    Image(String u, String w, String h, boolean i){
-        url = u;
+    public Image(){}
+
+    public Image(String u, String w, String h, boolean i){
+        image = u;
         width = w;
         height = h;
         insertedImg = i;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImage() {
+        return image;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String u) {
+        this.image = u;
     }
 
     public String getWidth() {

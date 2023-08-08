@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -31,16 +32,24 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
+import algonquin.cst2335.myfinalproject.BearGenerator.data.BearGeneratorDAO;
 import algonquin.cst2335.myfinalproject.BearGenerator.data.BearModel;
+import algonquin.cst2335.myfinalproject.BearGenerator.data.Image;
+import algonquin.cst2335.myfinalproject.BearGenerator.data.ImageDatabase;
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.BearGeneratorActivityLayoutBinding;
 import algonquin.cst2335.myfinalproject.databinding.BearGeneratorActivityListBinding;
 
 public class IdBearGeneratorList extends AppCompatActivity {
     BearGeneratorActivityListBinding binding;
-    ArrayList<String> text;
-    ArrayList<Bitmap> bitmap;
+    Bitmap bitmap;
+    ArrayList<Image> images;
+    Image removedImage;
+    Image image;
+    BearGeneratorDAO imageDAO;
     private RecyclerView.Adapter myAdapter;
     BearModel bearModel;
 
@@ -50,38 +59,52 @@ public class IdBearGeneratorList extends AppCompatActivity {
         binding = BearGeneratorActivityListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        bearModel = new ViewModelProvider(this).get(BearModel.class);
-        text = bearModel.texts.getValue();
-        bitmap = bearModel.images.getValue();
+        ImageDatabase db = Room.databaseBuilder(getApplicationContext(),
+                ImageDatabase.class, "database-name").build();
+        imageDAO = db.bearDAO();
 
-        if(text == null){
-            bearModel.texts.setValue(text = new ArrayList<>());
+        bearModel = new ViewModelProvider(this).get(BearModel.class);
+//        text = bearModel.texts.getValue();
+//        bitmap = bearModel.images.getValue();
+        images = bearModel.images.getValue();
+
+        if(images == null){
+            bearModel.images.setValue(images = new ArrayList<>());
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(()->{
+                images.addAll(imageDAO.getAllText());
+
+                runOnUiThread(()-> binding.recycleView.setAdapter(myAdapter));
+            });
         }
-        if(bitmap == null){
-            bearModel.images.setValue(bitmap = new ArrayList<>());
-        }
+//        if(bitmap == null){
+//            bearModel.images.setValue(bitmap = new ArrayList<>());
+//        }
 
         Intent previousPage = getIntent();
         String url = previousPage.getStringExtra("url");
         String width = previousPage.getStringExtra("width");
-        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        String height = previousPage.getStringExtra("height");
+        Toast.makeText(this, width,  Toast.LENGTH_SHORT).show();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
          StrictMode.setThreadPolicy(policy);
-        try {
-            InputStream inputImage = (InputStream) new URL(url).getContent();
-            bitmap.add(BitmapFactory.decodeStream(inputImage));
-            inputImage.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        text.add(width);
 
         binding.showBtn.setOnClickListener(click ->{
+            boolean addBtn = true;
             //add url to the array list
+            Image newImage = new Image(url, width, height, addBtn);
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(()->{
+                newImage.id = (int) imageDAO.insertImage(newImage);
+            });
+            images.add(newImage);
+            myAdapter.notifyItemInserted(images.size()-1);
+        });
 
-            myAdapter.notifyItemInserted(text.size()-1);
-            myAdapter.notifyItemInserted(bitmap.size()-1);
+        binding.moreBtn.setOnClickListener(click ->{
+            Intent firstPage = new Intent(this, IdBearGenerator.class);
+            startActivity(firstPage);
         });
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,15 +119,21 @@ public class IdBearGeneratorList extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                String obj = text.get(position);
-                Bitmap imageObj = bitmap.get(position);
-                holder.widthText.setText(obj);
-                holder.image.setImageBitmap(imageObj);
+                image = images.get(position);
+                try {
+                    InputStream inputImage = (InputStream) new URL(image.getImage()).getContent();
+                    bitmap = BitmapFactory.decodeStream(inputImage);
+                    inputImage.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+//                holder.widthText.setText(image.getWidth());
+                holder.image.setImageBitmap(bitmap);
             }
 
             @Override
             public int getItemCount() {
-                return bitmap.size();
+                return images.size();
             }
 
             @Override
@@ -125,6 +154,33 @@ public class IdBearGeneratorList extends AppCompatActivity {
             widthText = itemView.findViewById(R.id.widthText);
             image = itemView.findViewById(R.id.imageList);
             deleteButton = itemView.findViewById(R.id.deleteBtn);
+
+            deleteButton.setOnClickListener(click -> {
+                int position = getAbsoluteAdapterPosition();
+                Image m = images.get(position);
+                removedImage = m;
+                AlertDialog.Builder builder = new AlertDialog.Builder((IdBearGeneratorList.this));
+                builder.setMessage("Do you want to delete the message: ")
+                        .setTitle("Question")
+                        .setPositiveButton("Yes", ((dialog, cl) -> {
+                            Executor thread = Executors.newSingleThreadExecutor();
+                            thread.execute(()->{
+                                imageDAO.deleteImage(m);
+                                images.remove(position);
+                                runOnUiThread(()-> myAdapter.notifyItemRemoved(position));
+                            });
+                            Snackbar.make(deleteButton,"Do you want to undo?", Snackbar.LENGTH_LONG)
+                                    .setAction("Undo", (snackbarClick) -> {
+                                        images.add(position, removedImage);
+                                        myAdapter.notifyItemInserted(position);
+                                    })
+                                    .show();
+                        }))
+                        .setNegativeButton("No", ((dialog, cl) -> {
+                            dialog.cancel();
+                        }))
+                        .create().show();
+            });
         }
     }
 }

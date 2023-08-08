@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 public class BearModel extends ViewModel {
-    public MutableLiveData<ArrayList<String>> texts = new MutableLiveData<>();
-
-    public MutableLiveData<ArrayList<Bitmap>> images = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<Image>> images = new MutableLiveData<>();
+    public MutableLiveData<Image> selectdImages = new MutableLiveData<>();
 }
