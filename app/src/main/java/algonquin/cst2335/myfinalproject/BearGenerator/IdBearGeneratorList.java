@@ -2,6 +2,8 @@ package algonquin.cst2335.myfinalproject.BearGenerator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.myfinalproject.BearGenerator.data.BearGeneratorDAO;
+import algonquin.cst2335.myfinalproject.BearGenerator.data.BearImageDetailsFragment;
 import algonquin.cst2335.myfinalproject.BearGenerator.data.BearModel;
 import algonquin.cst2335.myfinalproject.BearGenerator.data.Image;
 import algonquin.cst2335.myfinalproject.BearGenerator.data.ImageDatabase;
@@ -47,11 +50,13 @@ public class IdBearGeneratorList extends AppCompatActivity {
     BearGeneratorActivityListBinding binding;
     Bitmap bitmap;
     ArrayList<Image> images;
-    Image removedImage;
+    Image selected;
     Image image;
     BearGeneratorDAO imageDAO;
     private RecyclerView.Adapter myAdapter;
     BearModel bearModel;
+
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +69,6 @@ public class IdBearGeneratorList extends AppCompatActivity {
         imageDAO = db.bearDAO();
 
         bearModel = new ViewModelProvider(this).get(BearModel.class);
-//        text = bearModel.texts.getValue();
-//        bitmap = bearModel.images.getValue();
         images = bearModel.images.getValue();
 
         if(images == null){
@@ -77,9 +80,6 @@ public class IdBearGeneratorList extends AppCompatActivity {
                 runOnUiThread(()-> binding.recycleView.setAdapter(myAdapter));
             });
         }
-//        if(bitmap == null){
-//            bearModel.images.setValue(bitmap = new ArrayList<>());
-//        }
 
         Intent previousPage = getIntent();
         String url = previousPage.getStringExtra("url");
@@ -142,6 +142,17 @@ public class IdBearGeneratorList extends AppCompatActivity {
             }
         });
 
+        bearModel.selectedImages.observe(this, (newImage)-> {
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+
+            BearImageDetailsFragment imageFragment = new BearImageDetailsFragment(newImage);
+            tx.add(R.id.fragmentLocation, imageFragment);
+            tx.replace(R.id.fragmentLocation, imageFragment);
+            tx.commit();
+            tx.addToBackStack("");
+        });
+
     }
 
     class MyRowHolder extends RecyclerView.ViewHolder{
@@ -155,10 +166,16 @@ public class IdBearGeneratorList extends AppCompatActivity {
             image = itemView.findViewById(R.id.imageList);
             deleteButton = itemView.findViewById(R.id.deleteBtn);
 
+            itemView.setOnClickListener(click ->{
+                position = getAbsoluteAdapterPosition();
+                selected = images.get(position);
+                bearModel.selectedImages.postValue(selected);
+            });
+
             deleteButton.setOnClickListener(click -> {
-                int position = getAbsoluteAdapterPosition();
+                position = getAbsoluteAdapterPosition();
                 Image m = images.get(position);
-                removedImage = m;
+                selected = m;
                 AlertDialog.Builder builder = new AlertDialog.Builder((IdBearGeneratorList.this));
                 builder.setMessage("Do you want to delete the message: ")
                         .setTitle("Question")
@@ -171,7 +188,7 @@ public class IdBearGeneratorList extends AppCompatActivity {
                             });
                             Snackbar.make(deleteButton,"Do you want to undo?", Snackbar.LENGTH_LONG)
                                     .setAction("Undo", (snackbarClick) -> {
-                                        images.add(position, removedImage);
+                                        images.add(position, selected);
                                         myAdapter.notifyItemInserted(position);
                                     })
                                     .show();

@@ -38,4 +38,17 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toEndOf="@+id/showBtn" />
 
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="408dp"
+        android:layout_height="wrap_content"
+        android:background="#ff6750a4"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

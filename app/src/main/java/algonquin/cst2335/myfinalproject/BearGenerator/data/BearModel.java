@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 public class BearModel extends ViewModel {
     public MutableLiveData<ArrayList<Image>> images = new MutableLiveData<>();
-    public MutableLiveData<Image> selectdImages = new MutableLiveData<>();
+    public MutableLiveData<Image> selectedImages = new MutableLiveData<>();
 }
