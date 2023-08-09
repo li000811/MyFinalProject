@@ -1,99 +1,69 @@
 package algonquin.cst2335.myfinalproject.aviation.DTO;
 
+/**
+ * The `ArrivalDTO` class represents arrival information for a flight.
+ */
 public class ArrivalDTO {
     private String airport;
-    private String timezone;
     private String iata;
-    private String icao;
     private String terminal;
     private String gate;
-    private String baggage;
     private Object delay;
-    private String scheduled;
-    private String estimated;
-    private Object actual;
-    private Object estimated_runway;
-    private Object actual_runway;
 
+    /**
+     * Get the airport of arrival.
+     *
+     * @return The airport of arrival.
+     */
     public String getAirport() {
         return airport;
     }
-    public void setAirport(String airport) {
-        this.airport = airport;
-    }
-    public String getTimezone() {
-        return timezone;
-    }
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
+
+    /**
+     * Get the IATA code of arrival.
+     *
+     * @return The IATA code of arrival.
+     */
     public String getIata() {
         return iata;
     }
+
+    /**
+     * Set the IATA code of arrival.
+     *
+     * @param iata The IATA code to set.
+     */
     public void setIata(String iata) {
         this.iata = iata;
     }
-    public String getIcao() {
-        return icao;
-    }
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
+
+    /**
+     * Get the terminal of arrival.
+     *
+     * @return The terminal of arrival.
+     */
     public String getTerminal() {
         return terminal;
     }
-    public void setTerminal(String terminal) {
-        this.terminal = terminal;
-    }
+
+    /**
+     * Get the gate of arrival.
+     *
+     * @return The gate of arrival.
+     */
     public String getGate() {
         return gate;
     }
-    public void setGate(String gate) {
-        this.gate = gate;
-    }
-    public String getBaggage() {
-        return baggage;
-    }
-    public void setBaggage(String baggage) {
-        this.baggage = baggage;
-    }
 
+    /**
+     * Get the delay status of arrival.
+     *
+     * @return The delay status of arrival as a string.
+     */
     public String getDelay() {
-        if (delay == null) {delay = "";}
+        if (delay == null) {
+            delay = "";
+        }
         return delay.toString();
-    }
-
-    public void setDelay(Object delay) {
-        this.delay = delay;
-    }
-    public String getScheduled() {
-        return scheduled;
-    }
-    public void setScheduled(String scheduled) {
-        this.scheduled = scheduled;
-    }
-    public String getEstimated() {
-        return estimated;
-    }
-    public void setEstimated(String estimated) {
-        this.estimated = estimated;
-    }
-    public Object getActual() {
-        return actual;
-    }
-    public void setActual(Object actual) {
-        this.actual = actual;
-    }
-    public Object getEstimated_runway() {
-        return estimated_runway;
-    }
-    public void setEstimated_runway(Object estimated_runway) {
-        this.estimated_runway = estimated_runway;
-    }
-    public Object getActual_runway() {
-        return actual_runway;
-    }
-    public void setActual_runway(Object actual_runway) {
-        this.actual_runway = actual_runway;
     }
 }

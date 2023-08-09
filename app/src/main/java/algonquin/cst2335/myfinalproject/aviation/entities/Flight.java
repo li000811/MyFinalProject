@@ -3,19 +3,22 @@ package algonquin.cst2335.myfinalproject.aviation.entities;
 import java.util.List;
 
 import algonquin.cst2335.myfinalproject.aviation.DTO.DataDTO;
-import algonquin.cst2335.myfinalproject.aviation.DTO.PaginationDTO;
 
+/**
+ * The `Flight` class represents a collection of flight data.
+ * It contains a list of `DataDTO` objects that hold detailed information about individual flights.
+ */
 public class Flight {
-
-    private PaginationDTO pagination;
+    /**
+     * The list of `DataDTO` objects representing individual flight data.
+     */
     private List<DataDTO> data;
 
-    public PaginationDTO getPagination() {
-        return pagination;
-    }
-    public void setPagination(PaginationDTO pagination) {
-        this.pagination = pagination;
-    }
+    /**
+     * Get the list of `DataDTO` objects containing flight data.
+     *
+     * @return The list of flight data.
+     */
     public List<DataDTO> getData() {
         return data;
     }

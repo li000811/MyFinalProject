@@ -38,8 +38,14 @@ import algonquin.cst2335.myfinalproject.aviation.adapters.SearchFlightListAdapte
 import algonquin.cst2335.myfinalproject.aviation.entities.Flight;
 import algonquin.cst2335.myfinalproject.aviation.entities.FlightEntity;
 
-
+/**
+ * The `SearchFlightFragment` class represents a fragment that allows users to search for flight information.
+ * It displays a search input field, a search button, and a list of search results.
+ *
+ * This class extends `Fragment`, providing the necessary functionality for creating an Android fragment.
+ */
 public class SearchFlightFragment extends Fragment {
+
     private EditText mEtSearch;
     private ConstraintLayout mClRoot;
     private Button mBtnSearch;
@@ -52,6 +58,7 @@ public class SearchFlightFragment extends Fragment {
 
     private Gson mGson = new Gson();
 
+    // Initializes UI elements and sets up the RecyclerView.
     private void initView() {
         mEtSearch = root.findViewById(R.id.et_search);
         mClRoot = root.findViewById(R.id.cl_root);
@@ -63,8 +70,9 @@ public class SearchFlightFragment extends Fragment {
         mRvFlights.setAdapter(mAdapter);
     }
 
+    // Initializes the fragment's functionality.
     private void init() {
-        sharedPreferences = getContext().getSharedPreferences("FIGHTS", MODE_PRIVATE);
+        sharedPreferences = requireContext().getSharedPreferences("FLIGHTS", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         mBtnSearch.setOnClickListener(view -> {
@@ -79,7 +87,7 @@ public class SearchFlightFragment extends Fragment {
         });
 
         mAdapter.setListener(dataDTO -> {
-            Intent intent = new Intent(getContext(), IdAviation.class); // is this the right class?
+            Intent intent = new Intent(getContext(), IdAviation.class); // Verify if this is the correct class.
             String data = mGson.toJson(dataDTO);
             intent.putExtra("data", data);
             startActivity(intent);
@@ -89,6 +97,7 @@ public class SearchFlightFragment extends Fragment {
         mEtSearch.setText(key);
     }
 
+    // Sends a request to fetch flight data based on the provided key.
     private void requestData(String key) {
         AlertDialog loadingDialog = new AlertDialog.Builder(getContext()).setMessage(getContext().getString(R.string.loading)).create();
         loadingDialog.show();
@@ -111,18 +120,24 @@ public class SearchFlightFragment extends Fragment {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-        }, error -> {
+                }, error -> {
             loadingDialog.dismiss();
             Snackbar.make(mClRoot, getContext().getString(R.string.failed) + error.toString(), Snackbar.LENGTH_SHORT).show();
         }
-
         );
         mQueue.add(stringRequest);
-
     }
 
     private View root;
 
+    /**
+     * Called when the fragment's view should be created.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
+     * @return The created View; or null.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
