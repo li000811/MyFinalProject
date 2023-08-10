@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MonProjetFinal</string>
+    <string name="welcome">bienvenue dans le générateur d\'images d\'ours</string>
+    <string name="generateImg">Générer une image</string>
+    <string name="yourImage">Votre image d\'ours</string>
+    <string name="confirm">Confirmer</string>
+    <string name="addImage">Ajouter une image</string>
+    <string name="back">Générateur d\'images</string>
+    <string name="delete">supprimer</string>
+    <string name="about">à propos</string>
+    <string name="imageDetails">Détails de l\'image</string>
+    <string name="id">ID :</string>
+    <string name="Width">Largeur :</string>
+    <string name="height">Hauteur :</string>
+</resources>

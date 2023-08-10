@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MyFinalProject</string>
+    <string name="welcome">Welcome to Bear Image Generator</string>
+    <string name="generateImg">Generate Image</string>
+    <string name="yourImage">Your Bear Image</string>
+    <string name="confirm">Confirm</string>
+    <string name="addImage">Add Image</string>
+    <string name="back">Image Generator</string>
+    <string name="delete">Delete</string>
+    <string name="about">About</string>
+    <string name="imageDetails">Image Details</string>
+    <string name="id">ID :</string>
+    <string name="Width">Width :</string>
+    <string name="height">Height :</string>
+
 </resources>
