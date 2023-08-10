@@ -1,17 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyFinalProject" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.FinalProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
-
-        <!--currency converter toolbar-->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@android:color/holo_green_dark</item>
-
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorSecondary">@color/my_secondary</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
     </style>
 
-
-    <style name="Theme.MyFinalProject" parent="Base.Theme.MyFinalProject" />
+    <style name="Theme.FinalProject" parent="Base.Theme.FinalProject" />
 </resources>
