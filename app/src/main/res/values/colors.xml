@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightyellow">#FFFFCC</color>
+    <color name="lightblue">#89CFF0</color>
+    <color name="violet">#9C27B0</color>
+
+    <color name="my_light_primary">@color/violet</color>
+    <color name="grey">#DFDFDF</color>
 </resources>
