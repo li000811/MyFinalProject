@@ -4,10 +4,12 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
+
         <!--currency converter toolbar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@android:color/holo_green_dark</item>
+
     </style>
 
 

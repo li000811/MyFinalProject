@@ -1,4 +1,27 @@
 <resources>
+
+    <string name="app_name">MyFinalProject</string>
+    <string name="welcome">Welcome to Bear Image Generator</string>
+    <string name="generateImg">Generate Image</string>
+    <string name="yourImage">Your Bear Image</string>
+    <string name="confirm">Confirm</string>
+    <string name="addImage">Add Image</string>
+    <string name="back">Image Generator</string>
+    <string name="delete">Delete</string>
+    <string name="about">About</string>
+    <string name="imageDetails">Image Details</string>
+    <string name="id">ID :</string>
+    <string name="Width">Width :</string>
+    <string name="height">Height :</string>
+    <string name="help">"1. Enter the WIDTH and HIEGHT of the image that you want.\n"
+                            "2. Then click the GENERATE IMAGE button. After that the application shows the preview of the image.\n"
+                            "3. If the image has been reached desired level, click the CONFIRM button.\n"
+                            "4. Then navigate to the next page that have image list.\n"
+                            "5. If the image has been reached desired level, click the ADD IMAGE button.\n"
+                            "6. You can delete images by clicking DELETE button.\n"
+                            "7. QUESTION mark symbol shows the instruction of the application use.\n"
+                            "8. ABOUT menu item shows the details of the selected image by choosing about in three dotted menu."</string>
+
   <string name="app_name">Our Final Project</string>
   
     <!--CURRENCY CONVERTER STRINGS-->
@@ -58,4 +81,5 @@
     <string name="tips">Tips</string>
     <string name="save_data">Saved in database successfully</string>
     <string name="delete">Delete</string>
+
 </resources>

@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+
+import algonquin.cst2335.myfinalproject.BearGenerator.IdBearGenerator;
+
 import algonquin.cst2335.myfinalproject.currencyConverter.CurrencyConverter;
 import algonquin.cst2335.myfinalproject.aviation.fragments.MainFlightFragment;
+
 import algonquin.cst2335.myfinalproject.databinding.ActivityMainBinding;
 
 /**
