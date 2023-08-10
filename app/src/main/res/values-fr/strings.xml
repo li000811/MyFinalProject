@@ -12,4 +12,12 @@
     <string name="id">ID :</string>
     <string name="Width">Largeur :</string>
     <string name="height">Hauteur :</string>
+    <string name="help">"1. Entrez la LARGEUR et la HAUTEUR de l\'image souhaitée.\n"
+                            2. Cliquez ensuite sur le bouton GÉNÉRER L\'IMAGE. Après cela, l\'application affiche l\'aperçu de l\'image.\n
+                            "3. Si l\'image a atteint le niveau souhaité, cliquez sur le bouton CONFIRMER.\n"
+                            "4. Ensuite, accédez à la page suivante contenant une liste d\'images.\n"
+                            "5. Si l\'image a atteint le niveau souhaité, cliquez sur le bouton AJOUTER UNE IMAGE.\n"
+                            "6. Vous pouvez supprimer des images en cliquant sur le bouton SUPPRIMER.\n"
+                            "7. Le symbole du point d\'INTERROGATION indique les instructions d'utilisation de l\'application.\n"
+                            "8. L\'élément de menu À PROPOS affiche les détails de l\'image sélectionnée en choisissant à propos de dans le menu à trois points."</string>
 </resources>

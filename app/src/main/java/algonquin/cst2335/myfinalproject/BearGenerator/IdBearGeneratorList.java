@@ -118,15 +118,7 @@ public class IdBearGeneratorList extends AppCompatActivity {
         }
         else if(item.getItemId() == R.id.help){
             AlertDialog.Builder builder = new AlertDialog.Builder((IdBearGeneratorList.this));
-            builder.setMessage("1. Enter the width and hiegth of the image that you want." +
-                            "2. Then click the generate image button. After that the application shows the preview of the image." +
-                            "3. If the image has been reached desired level, click the Confirm button." +
-                            "4. Then navigate to the next page that have image list." +
-                            "5. If the image has been reached desired level, click the Add Image button." +
-                            "6. You can delete images by clicking Delete button." +
-                            "7. Question mark symbol shows the instruction of the application use." +
-                            "8. About menu item shows the details of the selected image."
-                    )
+            builder.setMessage(R.string.help)
                     .setTitle("Instruction")
                     .setPositiveButton("Ok", ((dialog, cl) -> {
                         dialog.cancel();

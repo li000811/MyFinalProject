@@ -1,11 +1,15 @@
 package algonquin.cst2335.myfinalproject.BearGenerator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,7 +39,6 @@ public class IdBearGenerator extends AppCompatActivity {
      * Button object for image gerenator
      */
     Button generateButton;
-
 
     /**
      * main method for runn the IdBearGenerator class
