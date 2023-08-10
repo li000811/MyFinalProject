@@ -13,13 +13,37 @@ import android.widget.Toast;
 import algonquin.cst2335.myfinalproject.R;
 import algonquin.cst2335.myfinalproject.databinding.BearGeneratorActivityMainBinding;
 
+/**
+ * author : Chamini Savindya Demuni
+ * This class implement the user inputs for generate the image
+ */
 public class IdBearGenerator extends AppCompatActivity {
 
+    /**
+     * view binding of IdBearGenerator class
+     */
     BearGeneratorActivityMainBinding binding;
+    /**
+     * Edit text object for image width
+     */
     EditText widthText;
+    /**
+     * Edit text object for image height
+     */
     EditText heightText;
+    /**
+     * Button object for image gerenator
+     */
     Button generateButton;
 
+
+    /**
+     * main method for runn the IdBearGenerator class
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
