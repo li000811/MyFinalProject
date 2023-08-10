@@ -1,85 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#009688"
     tools:context=".MainActivity">
 
-    <TextView
-    android:id="@+id/id_welcomePage"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="sans-serif-medium"
-    android:text="Welcome to Our Final Project"
-    android:textAlignment="center"
-    android:textColor="#647DC8"
-    android:textSize="22sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toTopOf="@+id/id_aviationTracker"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Created on July 16, 2023"
-        app:layout_constraintEnd_toEndOf="@+id/id_welcomePage"
-        app:layout_constraintStart_toStartOf="@+id/id_welcomePage"
-        app:layout_constraintTop_toBottomOf="@+id/id_welcomePage" />
 
     <Button
-        android:id="@+id/id_aviationTracker"
-        android:layout_width="wrap_content"
+        android:id="@+id/aviation"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:text="Aviation Stack Flight Tracker"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/aviation_tracker"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/currency"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--add recycleView July 16-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/theRecycleView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/id_currencyConverter"
-        android:layout_width="wrap_content"
+        android:id="@+id/currency"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Currency Converter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_aviationTracker" />
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/currency_converter"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/trivia"
+        app:layout_constraintEnd_toEndOf="@+id/aviation"
+        app:layout_constraintStart_toStartOf="@+id/aviation" />
 
     <Button
-        android:id="@+id/id_triviaQuestion"
-        android:layout_width="wrap_content"
+        android:id="@+id/trivia"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Trivia Question Database"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_currencyConverter" />
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/trivia_question"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bearImage"
+        app:layout_constraintEnd_toEndOf="@+id/currency"
+        app:layout_constraintStart_toStartOf="@+id/currency" />
 
     <Button
-        android:id="@+id/id_bearGenerator"
-        android:layout_width="195dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="32dp"
-        android:text="Bear Image Generator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_triviaQuestion" />
+        android:id="@+id/bearImage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/mainButtonColor"
+        android:text="@string/bear_image"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/trivia"
+        app:layout_constraintStart_toStartOf="@+id/trivia" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/aviation"
+        app:layout_constraintEnd_toEndOf="@+id/aviation"
+        app:layout_constraintStart_toStartOf="@+id/aviation"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

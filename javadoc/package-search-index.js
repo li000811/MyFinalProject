@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"algonquin.cst2335.myfinalproject"},{"l":"algonquin.cst2335.myfinalproject.BearGenerator"},{"l":"algonquin.cst2335.myfinalproject.BearGenerator.data"},{"l":"algonquin.cst2335.myfinalproject.databinding"},{"l":"All Packages","u":"allpackages-index.html"}];updateSearchResults();
